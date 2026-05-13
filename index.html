@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黄琴琴 · 妙帐科技 高级销售经理</title>
+<style>
+  /* ══════════════════════════════════════════
+     DESIGN SYSTEM
+     ══════════════════════════════════════════ */
+  :root {
+    --bg: #f6f9fd;
+    --surface: rgba(255,255,255,0.68);
+    --card: rgba(255,255,255,0.78);
+    --text: #101b2b;
+    --text-2: #506078;
+    --text-3: #7b8da6;
+    --cyan: #00b8d4;
+    --blue: #2979ff;
+    --violet: #7c4dff;
+    --emerald: #00c853;
+    --amber: #ff9100;
+    --border: rgba(41,121,255,0.10);
+    --border-hover: rgba(0,184,212,0.28);
+    --glow-cyan: rgba(0,184,212,0.10);
+    --glow-blue: rgba(41,121,255,0.08);
+    --glow-violet: rgba(124,77,255,0.08);
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+    --radius-sm: 12px;
+    --radius: 20px;
+    --radius-lg: 26px;
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ══════ 背景层 ══════ */
+  #bg-canvas {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  }
+
+  .scanline {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(41,121,255,0.010) 2px, rgba(41,121,255,0.010) 4px);
+  }
+
+  /* 浮动光斑 */
+  .orb { position: fixed; border-radius: 50%; filter: blur(130px); pointer-events: none; z-index: 0; }
+  .orb-a { width: 520px; height: 520px; background: rgba(0,184,212,0.07);  top: -18%; left: -12%; animation: drift 22s ease-in-out infinite; }
+  .orb-b { width: 440px; height: 440px; background: rgba(124,77,255,0.06); bottom: -14%; right: -10%; animation: drift 24s ease-in-out infinite -8s; }
+  .orb-c { width: 340px; height: 340px; background: rgba(41,121,255,0.05); top: 45%; left: 58%; animation: drift 20s ease-in-out infinite -15s; }
+  @keyframes drift {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    25%  { transform: translate(50px, -35px) scale(1.06); }
+    50%  { transform: translate(-25px, 25px) scale(0.94); }
+    75%  { transform: translate(-40px, -20px) scale(1.04); }
+  }
+
+  /* ══════ 导航 ══════ */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 14px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(246,249,253,0.72); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono); font-size: 13px; font-weight: 700;
+    letter-spacing: 3px; color: var(--text);
+  }
+  .nav-logo span { color: var(--cyan); }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a {
+    font-size: 12px; font-family: var(--mono); letter-spacing: 1.5px;
+    color: var(--text-2); text-decoration: none;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  /* ══════ 主容器 ══════ */
+  .main {
+    max-width: 960px; margin: 0 auto; padding: 90px 24px 60px;
+    position: relative; z-index: 1;
+  }
+
+  /* ══════ 入场动画 ══════ */
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    animation: reveal 0.7s var(--ease) forwards;
+  }
+  .reveal:nth-child(1) { animation-delay: 0.05s; }
+  .reveal:nth-child(2) { animation-delay: 0.15s; }
+  .reveal:nth-child(3) { animation-delay: 0.25s; }
+  .reveal:nth-child(4) { animation-delay: 0.35s; }
+  .reveal:nth-child(5) { animation-delay: 0.45s; }
+  .reveal:nth-child(6) { animation-delay: 0.55s; }
+  .reveal:nth-child(7) { animation-delay: 0.65s; }
+  .reveal:nth-child(8) { animation-delay: 0.75s; }
+  @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
+
+  /* ══════ SECTION 通用 ══════ */
+  .sec { margin-bottom: 34px; }
+  .sec-tag {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 3px;
+    color: var(--cyan); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .sec-tag::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(0,184,212,0.28), transparent);
+  }
+
+  /* ══════ HUD 卡片 ══════ */
+  .card {
+    background: var(--card); backdrop-filter: blur(18px);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 36px; position: relative;
+    transition: border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  }
+  .card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 8px 44px rgba(41,121,255,0.04), inset 0 0 0 1px rgba(41,121,255,0.02);
+  }
+  /* HUD 角标 */
+  .card::before, .card::after {
+    content: ''; position: absolute; width: 26px; height: 26px; pointer-events: none;
+    transition: border-color 0.35s var(--ease);
+  }
+  .card::before {
+    top: 10px; left: 10px;
+    border-top: 2px solid rgba(0,184,212,0.20); border-left: 2px solid rgba(0,184,212,0.20);
+    border-radius: 4px 0 0 0;
+  }
+  .card::after {
+    bottom: 10px; right: 10px;
+    border-bottom: 2px solid rgba(0,184,212,0.20); border-right: 2px solid rgba(0,184,212,0.20);
+    border-radius: 0 0 4px 0;
+  }
+  .card:hover::before, .card:hover::after { border-color: rgba(0,184,212,0.50); }
+
+  /* ══════ HERO ══════ */
+  .hero { text-align: center; padding: 30px 0 14px; }
+
+  .avatar-wrap { display: inline-block; position: relative; margin-bottom: 28px; }
+
+  .hex {
+    width: 110px; height: 124px;
+    background: linear-gradient(135deg, var(--blue), var(--cyan), var(--violet));
+    clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 2;
+  }
+  .hex span { font-size: 46px; color: #fff; transform: translateY(2px); }
+
+  .hex-ring {
+    position: absolute; inset: -15px;
+    clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+    background: rgba(41,121,255,0.08); z-index: 1;
+    animation: hexPulse 3.2s ease-in-out infinite;
+  }
+  .hex-ring2 {
+    position: absolute; inset: -28px;
+    clip-path: polygon(50% 1%,99% 25%,99% 75%,50% 99%,1% 75%,1% 25%);
+    border: 1px solid rgba(41,121,255,0.10); z-index: 0;
+    animation: hexPulse 3.2s ease-in-out infinite 0.6s;
+  }
+  @keyframes hexPulse {
+    0%,100% { opacity: 0.25; transform: scale(1); }
+    50% { opacity: 0.65; transform: scale(1.04); }
+  }
+
+  .name {
+    font-size: 40px; font-weight: 800; letter-spacing: 7px;
+    position: relative; display: inline-block;
+  }
+  .name::before, .name::after {
+    content: attr(data-text); position: absolute; inset: 0; opacity: 0;
+  }
+  .name::before {
+    color: var(--cyan);
+    animation: glitchA 4.5s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 32%, 0 32%);
+  }
+  .name::after {
+    color: var(--violet);
+    animation: glitchB 4.5s infinite;
+    clip-path: polygon(0 68%, 100% 68%, 100% 100%, 0 100%);
+  }
+  @keyframes glitchA {
+    0%,91%,100% { opacity:0; transform:translate(0); }
+    92% { opacity:0.28; transform:translate(-2px,1px); }
+    93% { opacity:0; transform:translate(2px,-1px); }
+  }
+  @keyframes glitchB {
+    0%,88%,100% { opacity:0; transform:translate(0); }
+    89% { opacity:0.22; transform:translate(1.5px,-0.5px); }
+    90% { opacity:0; transform:translate(-1px,0.5px); }
+  }
+
+  .hero-sub {
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    margin-top: 12px; font-family: var(--mono); font-size: 13px;
+    letter-spacing: 3px; color: var(--text-2);
+  }
+  .hero-sub em { font-style: normal; color: var(--cyan); font-weight: 600; }
+  .hero-line { width: 28px; height: 1px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); }
+
+  .status {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 18px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px;
+    color: var(--text-2); background: var(--surface); border: 1px solid var(--border);
+    border-radius: 22px; padding: 6px 16px; backdrop-filter: blur(10px);
+  }
+  .status-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--emerald);
+    box-shadow: 0 0 9px rgba(0,200,83,0.5); animation: statusBlink 2s ease-in-out infinite;
+  }
+  @keyframes statusBlink {
+    0%,100% { opacity: 1; } 50% { opacity: 0.3; }
+  }
+
+  /* ══════ 关于我 ══════ */
+  .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: start; }
+  .about-text p { font-size: 15px; color: var(--text-2); margin-bottom: 13px; line-height: 1.95; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-text .hl { color: var(--blue); font-weight: 700; }
+  .about-text .hl2 { color: var(--cyan); font-weight: 700; }
+
+  .info-list { display: flex; flex-direction: column; gap: 2px; }
+  .info-row {
+    display: flex; align-items: center; gap: 14px; padding: 13px 14px;
+    border-radius: var(--radius-sm); transition: background 0.25s;
+  }
+  .info-row:hover { background: rgba(41,121,255,0.025); }
+  .info-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; flex-shrink: 0;
+  }
+  .info-icon.c { background: var(--glow-cyan); }
+  .info-icon.b { background: var(--glow-blue); }
+  .info-icon.v { background: var(--glow-violet); }
+  .info-l { font-size: 10px; color: var(--text-3); letter-spacing: 1.5px; font-family: var(--mono); }
+  .info-v { font-size: 14px; font-weight: 600; }
+
+  /* ══════ 技能 & 指标 ══════ */
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .metric {
+    background: rgba(255,255,255,0.55); border: 1px solid var(--border);
+    border-radius: 14px; padding: 22px 16px; text-align: center;
+    transition: all 0.3s var(--ease);
+  }
+  .metric:hover { border-color: var(--border-hover); box-shadow: 0 4px 20px rgba(0,184,212,0.05); transform: translateY(-2px); }
+  .metric-val {
+    font-size: 30px; font-weight: 800;
+    background: linear-gradient(135deg, var(--cyan), var(--blue));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .metric-lab { font-size: 11px; color: var(--text-3); margin-top: 4px; font-family: var(--mono); letter-spacing: 1px; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .tag {
+    font-family: var(--mono); font-size: 11px; padding: 7px 16px;
+    border-radius: 20px; background: rgba(255,255,255,0.60);
+    border: 1px solid var(--border); color: var(--blue);
+    letter-spacing: 0.5px; transition: all 0.3s;
+    cursor: default;
+  }
+  .tag:hover { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 2px 12px rgba(0,184,212,0.08); transform: translateY(-1px); }
+
+  /* ══════ 时间线 / 日志 ══════ */
+  .timeline { position: relative; padding-left: 40px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 15px; top: 8px; bottom: 8px;
+    width: 1px; background: linear-gradient(180deg, var(--cyan), var(--violet), transparent);
+    opacity: 0.25;
+  }
+  .tl-item { position: relative; margin-bottom: 28px; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: -33px; top: 6px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--cyan); box-shadow: 0 0 12px rgba(0,184,212,0.35);
+    border: 2px solid var(--bg);
+  }
+  .tl-date {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px;
+    color: var(--cyan); margin-bottom: 4px;
+  }
+  .tl-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .tl-desc { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+  .tl-tag {
+    display: inline-block; font-family: var(--mono); font-size: 10px;
+    padding: 3px 10px; border-radius: 10px; margin-top: 8px;
+    letter-spacing: 1px;
+  }
+  .tl-tag.achievement { background: rgba(0,200,83,0.08); color: var(--emerald); border: 1px solid rgba(0,200,83,0.18); }
+  .tl-tag.project    { background: rgba(41,121,255,0.07); color: var(--blue); border: 1px solid rgba(41,121,255,0.15); }
+  .tl-tag.career    { background: rgba(124,77,255,0.07); color: var(--violet); border: 1px solid rgba(124,77,255,0.15); }
+
+  /* ══════ 博客卡片 ══════ */
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .blog-card {
+    background: rgba(255,255,255,0.55); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    transition: all 0.35s var(--ease); cursor: pointer;
+  }
+  .blog-card:hover { border-color: var(--border-hover); box-shadow: 0 6px 30px rgba(41,121,255,0.06); transform: translateY(-3px); }
+  .blog-img {
+    height: 140px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .blog-img-inner {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(0,184,212,0.12), rgba(124,77,255,0.12));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 42px;
+  }
+  .blog-body { padding: 20px; }
+  .blog-date { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 1.5px; margin-bottom: 6px; }
+  .blog-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
+  .blog-excerpt { font-size: 13px; color: var(--text-2); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .blog-readmore {
+    display: inline-block; margin-top: 12px; font-family: var(--mono);
+    font-size: 11px; letter-spacing: 1.5px; color: var(--blue);
+    text-decoration: none; transition: color 0.25s;
+  }
+  .blog-readmore:hover { color: var(--cyan); }
+
+  /* ══════ 联系方式 ══════ */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 36px; align-items: center;
+  }
+  .contact-items { display: flex; flex-direction: column; gap: 4px; }
+  .ci {
+    display: flex; align-items: center; gap: 14px;
+    padding: 13px 14px; border-radius: var(--radius-sm);
+    transition: background 0.25s;
+  }
+  .ci:hover { background: rgba(41,121,255,0.025); }
+  .ci-icon {
+    width: 40px; height: 40px; border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .ci-icon.c { background: var(--glow-cyan); }
+  .ci-icon.b { background: var(--glow-blue); }
+  .ci-icon.v { background: var(--glow-violet); }
+  .ci-l { font-size: 10px; color: var(--text-3); letter-spacing: 1.5px; font-family: var(--mono); }
+  .ci-v { font-size: 14px; font-weight: 500; }
+
+  .contact-divider {
+    width: 1px; min-height: 180px;
+    background: linear-gradient(180deg, transparent, var(--border), transparent);
+    align-self: stretch;
+  }
+
+  /* 二维码 */
+  .qr-block { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .qr-wrap { position: relative; width: 162px; height: 162px; }
+  .qr-outer {
+    position: absolute; inset: -10px; border-radius: 22px;
+    border: 1px solid rgba(0,184,212,0.12);
+  }
+  .qr-inner {
+    width: 100%; height: 100%; border-radius: 16px;
+    background: #fff; border: 1px solid var(--border);
+    padding: 12px; position: relative; z-index: 1;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .qr-inner:hover { border-color: var(--cyan); box-shadow: 0 4px 24px rgba(0,184,212,0.08); }
+  .qr-inner svg { width: 100%; height: 100%; }
+  .qr-scan {
+    position: absolute; left: 12px; right: 12px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    z-index: 2; pointer-events: none;
+    animation: qrScan 2.6s ease-in-out infinite; opacity: 0.5;
+  }
+  @keyframes qrScan {
+    0% { top: 12px; opacity: 0; }
+    15% { opacity: 0.65; }
+    85% { opacity: 0.65; }
+    100% { top: calc(100% - 12px); opacity: 0; }
+  }
+  .qr-cap { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; color: var(--text-3); }
+
+  /* ══════ 评论区 ══════ */
+  .comments-wrap { min-height: 300px; }
+
+  /* ══════ Footer ══════ */
+  .footer {
+    text-align: center; padding-top: 30px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px;
+    color: var(--text-3); opacity: 0.5;
+  }
+  .footer em { font-style: normal; color: var(--cyan); }
+
+  /* ══════ 响应式 ══════ */
+  @media (max-width: 768px) {
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 10px; letter-spacing: 1px; }
+    .name { font-size: 28px; letter-spacing: 4px; }
+    .about-grid { grid-template-columns: 1fr; gap: 22px; }
+    .metrics { grid-template-columns: 1fr 1fr; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 22px; }
+    .contact-divider { width: 100%; height: 1px; min-height: unset; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+    .card { padding: 24px; }
+  }
+  @media (max-width: 480px) {
+    .nav { padding: 10px 14px; }
+    .nav-links { gap: 10px; }
+    .metrics { grid-template-columns: 1fr; }
+    .hero-sub { font-size: 11px; letter-spacing: 2px; }
+    .tl-item { margin-bottom: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 背景效果 -->
+<div class="orb orb-a"></div>
+<div class="orb orb-b"></div>
+<div class="orb orb-c"></div>
+<canvas id="bg-canvas"></canvas>
+<div class="scanline"></div>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="nav-logo"><span>&#9670;</span> QINQIN.H</div>
+  <ul class="nav-links">
+    <li><a href="#about">关于</a></li>
+    <li><a href="#skills">能力</a></li>
+    <li><a href="#timeline">日志</a></li>
+    <li><a href="#blog">博客</a></li>
+    <li><a href="#contact">联系</a></li>
+    <li><a href="#comments">留言</a></li>
+  </ul>
+</nav>
+
+<main class="main">
+
+  <!-- ══════ HERO ══════ -->
+  <section class="hero reveal">
+    <div class="avatar-wrap">
+      <div class="hex-ring2"></div>
+      <div class="hex-ring"></div>
+      <div class="hex"><span>🪐</span></div>
+    </div>
+    <h1 class="name" data-text="黄 琴 琴">黄 琴 琴</h1>
+    <div class="hero-sub">
+      <span class="hero-line"></span>
+      <em>妙帐科技</em> · 高级销售经理
+      <span class="hero-line"></span>
+    </div>
+    <div class="status">
+      <span class="status-dot"></span> SYSTEM ONLINE · 开放合作
+    </div>
+  </section>
+
+  <!-- ══════ 关于我 ══════ -->
+  <section class="sec reveal" id="about">
+    <div class="sec-tag">// 个人档案</div>
+    <div class="card">
+      <div class="about-grid">
+        <div class="about-text">
+          <p>你好，我是<span class="hl">黄琴琴</span>，现任<span class="hl2">妙帐科技</span>高级销售经理，常驻武汉。</p>
+          <p>毕业于<span class="hl">武汉大学</span>，拥有丰富的 B2B 销售实战经验。深耕 SaaS 与企业服务领域，擅长客户关系管理、商务谈判与销售策略制定，始终致力于用专业和真诚为客户创造长期价值。</p>
+          <p>工作之外，热爱阅读、旅行与摄影 — 保持对世界的好奇心，是我持续成长的动力。</p>
+        </div>
+        <div class="info-list">
+          <div class="info-row">
+            <div class="info-icon c">&#x1F4CD;</div>
+            <div><div class="info-l">BASE</div><div class="info-v">中国 · 武汉</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon b">&#x1F4BC;</div>
+            <div><div class="info-l">COMPANY</div><div class="info-v">妙帐科技</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon v">&#x1F393;</div>
+            <div><div class="info-l">ALMA MATER</div><div class="info-v">武汉大学</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon c">&#x1F310;</div>
+            <div><div class="info-l">LANGUAGES</div><div class="info-v">中文 · English</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ 核心能力 ══════ -->
+  <section class="sec reveal" id="skills">
+    <div class="sec-tag">// 核心能力</div>
+    <div class="card">
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">8+</div><div class="metric-lab">年销售经验</div></div>
+        <div class="metric"><div class="metric-val">500+</div><div class="metric-lab">服务客户</div></div>
+        <div class="metric"><div class="metric-val">98%</div><div class="metric-lab">客户满意度</div></div>
+        <div class="metric"><div class="metric-val">30+</div><div class="metric-lab">合作伙伴</div></div>
+      </div>
+      <div class="tags">
+        <span class="tag">大客户管理</span>
+        <span class="tag">销售策略</span>
+        <span class="tag">商务谈判</span>
+        <span class="tag">CRM系统</span>
+        <span class="tag">团队管理</span>
+        <span class="tag">市场分析</span>
+        <span class="tag">客户关系</span>
+        <span class="tag">合同管理</span>
+        <span class="tag">SaaS销售</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ 时间线 / 日志 ══════ -->
+  <section class="sec reveal" id="timeline">
+    <div class="sec-tag">// 职业日志</div>
+    <div class="card">
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2025.12</div>
+          <div class="tl-title">晋升高级销售经理</div>
+          <div class="tl-desc">全面负责华中区域企业客户销售策略，管理 12 人销售团队，Q4 业绩同比增长 45%。</div>
+          <span class="tl-tag career">职业晋升</span>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2025.06</div>
+          <div class="tl-title">签下年度最大客户 — 恒信集团</div>
+          <div class="tl-desc">历经三个月商务谈判，最终达成 1200 万年度框架协议，创公司单笔合同金额新高。</div>
+          <span class="tl-tag achievement">标杆案例</span>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2024.09</div>
+          <div class="tl-title">主导 CRM 销售流程优化项目</div>
+          <div class="tl-desc">推动销售团队数字化转型，落地新 CRM 系统，销售线索转化率提升 22%。</div>
+          <span class="tl-tag project">重点项目</span>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2023.03</div>
+          <div class="tl-title">加入妙帐科技</div>
+          <div class="tl-desc">以销售经理身份加入，负责华中区 SaaS 产品销售，首年即完成 130% 业绩目标。</div>
+          <span class="tl-tag career">职业起点</span>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2018.06</div>
+          <div class="tl-title">武汉大学 · 市场营销专业毕业</div>
+          <div class="tl-desc">获管理学学士学位，在校期间担任学生会外联部部长，积累丰富商务实践经验。</div>
+          <span class="tl-tag career">教育背景</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ 博客 ══════ -->
+  <section class="sec reveal" id="blog">
+    <div class="sec-tag">// 博客文章</div>
+    <div class="blog-grid">
+
+      <div class="blog-card">
+        <div class="blog-img"><div class="blog-img-inner">&#x1F4CA;</div></div>
+        <div class="blog-body">
+          <div class="blog-date">2026.04.20</div>
+          <div class="blog-title">B2B 销售的黄金法则：信任是第一生产力</div>
+          <div class="blog-excerpt">在大客户销售中，建立信任远比推销产品重要。分享我总结的五步信任构建框架...</div>
+          <a class="blog-readmore" href="#">&#x2192; 阅读全文</a>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-img"><div class="blog-img-inner">&#x1F3AF;</div></div>
+        <div class="blog-body">
+          <div class="blog-date">2026.03.08</div>
+          <div class="blog-title">如何用数据驱动销售决策</div>
+          <div class="blog-excerpt">脱离拍脑袋的旧模式，用 CRM 数据和市场分析指导销售策略，让业绩可预测、可复制...</div>
+          <a class="blog-readmore" href="#">&#x2192; 阅读全文</a>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-img"><div class="blog-img-inner">&#x1F91D;</div></div>
+        <div class="blog-body">
+          <div class="blog-date">2026.01.15</div>
+          <div class="blog-title">从武汉大学到销售管理：我的十年成长路</div>
+          <div class="blog-excerpt">回望从校园到职场的每一步，那些踩过的坑和收获的感悟，写给你们也写给自己...</div>
+          <a class="blog-readmore" href="#">&#x2192; 阅读全文</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════ 联系方式 ══════ -->
+  <section class="sec reveal" id="contact">
+    <div class="sec-tag">// 建立连接</div>
+    <div class="card">
+      <div class="contact-grid">
+        <div class="contact-items">
+          <div class="ci">
+            <div class="ci-icon c">&#x1F4E7;</div>
+            <div><div class="ci-l">EMAIL</div><div class="ci-v">huangqinqin@miaozhang.com</div></div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon b">&#x1F4F1;</div>
+            <div><div class="ci-l">PHONE</div><div class="ci-v">+86 138-xxxx-xxxx</div></div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon v">&#x1F4AC;</div>
+            <div><div class="ci-l">WECHAT</div><div class="ci-v">huang_qinqin</div></div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon c">&#x1F517;</div>
+            <div><div class="ci-l">LINKEDIN</div><div class="ci-v">linkedin.com/in/huangqinqin</div></div>
+          </div>
+        </div>
+
+        <div class="contact-divider"></div>
+
+        <div class="qr-block">
+          <div class="qr-wrap">
+            <div class="qr-outer"></div>
+            <div class="qr-inner">
+              <!-- 替换为真实二维码: <img src="qr.png" style="width:100%;height:100%"> -->
+              <svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="40" height="40" rx="3" fill="none" stroke="#101b2b" stroke-width="5"/><rect x="6" y="6" width="28" height="28" rx="1.5" fill="#101b2b"/><rect x="11" y="11" width="18" height="18" rx="1" fill="#fff"/>
+                <rect x="90" y="0" width="40" height="40" rx="3" fill="none" stroke="#101b2b" stroke-width="5"/><rect x="96" y="6" width="28" height="28" rx="1.5" fill="#101b2b"/><rect x="101" y="11" width="18" height="18" rx="1" fill="#fff"/>
+                <rect x="0" y="90" width="40" height="40" rx="3" fill="none" stroke="#101b2b" stroke-width="5"/><rect x="6" y="96" width="28" height="28" rx="1.5" fill="#101b2b"/><rect x="11" y="101" width="18" height="18" rx="1" fill="#fff"/>
+                <g fill="#101b2b"><rect x="48" y="4" width="4" height="4" rx="0.8"/><rect x="58" y="4" width="4" height="4" rx="0.8"/><rect x="70" y="4" width="4" height="4" rx="0.8"/><rect x="80" y="4" width="4" height="4" rx="0.8"/><rect x="48" y="14" width="4" height="4" rx="0.8"/><rect x="70" y="14" width="4" height="4" rx="0.8"/><rect x="58" y="24" width="4" height="4" rx="0.8"/><rect x="80" y="24" width="4" height="4" rx="0.8"/><rect x="48" y="34" width="4" height="4" rx="0.8"/><rect x="58" y="34" width="4" height="4" rx="0.8"/><rect x="70" y="34" width="4" height="4" rx="0.8"/><rect x="80" y="34" width="4" height="4" rx="0.8"/><rect x="4" y="48" width="4" height="4" rx="0.8"/><rect x="14" y="48" width="4" height="4" rx="0.8"/><rect x="26" y="48" width="4" height="4" rx="0.8"/><rect x="36" y="48" width="4" height="4" rx="0.8"/><rect x="4" y="70" width="4" height="4" rx="0.8"/><rect x="14" y="70" width="4" height="4" rx="0.8"/><rect x="36" y="70" width="4" height="4" rx="0.8"/><rect x="48" y="48" width="4" height="4" rx="0.8"/><rect x="70" y="48" width="4" height="4" rx="0.8"/><rect x="48" y="58" width="4" height="4" rx="0.8"/><rect x="58" y="58" width="4" height="4" rx="0.8"/><rect x="70" y="58" width="4" height="4" rx="0.8"/><rect x="80" y="58" width="4" height="4" rx="0.8"/><rect x="48" y="70" width="4" height="4" rx="0.8"/><rect x="80" y="70" width="4" height="4" rx="0.8"/><rect x="4" y="96" width="4" height="4" rx="0.8"/><rect x="14" y="96" width="4" height="4" rx="0.8"/><rect x="26" y="96" width="4" height="4" rx="0.8"/><rect x="36" y="96" width="4" height="4" rx="0.8"/><rect x="4" y="106" width="4" height="4" rx="0.8"/><rect x="26" y="106" width="4" height="4" rx="0.8"/><rect x="14" y="116" width="4" height="4" rx="0.8"/><rect x="36" y="116" width="4" height="4" rx="0.8"/><rect x="4" y="122" width="4" height="4" rx="0.8"/><rect x="14" y="122" width="4" height="4" rx="0.8"/><rect x="48" y="96" width="4" height="4" rx="0.8"/><rect x="70" y="96" width="4" height="4" rx="0.8"/><rect x="58" y="106" width="4" height="4" rx="0.8"/><rect x="80" y="106" width="4" height="4" rx="0.8"/><rect x="48" y="116" width="4" height="4" rx="0.8"/><rect x="70" y="122" width="4" height="4" rx="0.8"/><rect x="96" y="48" width="4" height="4" rx="0.8"/><rect x="106" y="48" width="4" height="4" rx="0.8"/><rect x="118" y="48" width="4" height="4" rx="0.8"/><rect x="96" y="70" width="4" height="4" rx="0.8"/><rect x="118" y="70" width="4" height="4" rx="0.8"/><rect x="96" y="96" width="4" height="4" rx="0.8"/><rect x="106" y="96" width="4" height="4" rx="0.8"/><rect x="118" y="96" width="4" height="4" rx="0.8"/><rect x="96" y="106" width="4" height="4" rx="0.8"/><rect x="118" y="106" width="4" height="4" rx="0.8"/><rect x="106" y="116" width="4" height="4" rx="0.8"/><rect x="96" y="122" width="4" height="4" rx="0.8"/><rect x="118" y="122" width="4" height="4" rx="0.8"/></g>
+              </svg>
+            </div>
+            <div class="qr-scan"></div>
+          </div>
+          <span class="qr-cap">SCAN TO CONNECT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ 游客评论 ══════ -->
+  <section class="sec reveal" id="comments">
+    <div class="sec-tag">// 游客留言</div>
+    <div class="card">
+      <div class="comments-wrap">
+        <!--
+          ═══════════════════════════════════════════
+          GISCUS 评论区集成
+          使用 GitHub Discussions 驱动的免费评论系统
+          ═══════════════════════════════════════════
+
+          配置步骤:
+          1. 确保你的 GitHub Pages 仓库已创建且为 public
+          2. 访问 https://github.com/apps/giscus 安装 giscus app 到该仓库
+          3. 在仓库 Settings > Features 中启用 Discussions
+          4. 访问 https://giscus.app/zh-CN 填写仓库名，获取 repo-id 和 category-id
+          5. 将下方 data-repo / data-repo-id / data-category-id 替换为你的真实值
+        -->
+        <script src="https://giscus.app/client.js"
+          data-repo="YOUR_USERNAME/YOUR_REPO"
+          data-repo-id="R_kgxxxxxxxxxxxxx"
+          data-category="Announcements"
+          data-category-id="DIC_kwxxxxxxxxxxx"
+          data-mapping="pathname"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light_high_contrast"
+          data-lang="zh-CN"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+        </script>
+      </div>
+      <p style="font-size:12px;color:var(--text-3);margin-top:14px;text-align:center;font-family:var(--mono);letter-spacing:1px;">
+        &#x26A0; 评论区使用 <a href="https://giscus.app/zh-CN" target="_blank" style="color:var(--cyan);">giscus</a> + GitHub Discussions 驱动。部署后按上方注释配置即可启用。
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════ Footer ══════ -->
+  <footer class="footer reveal">
+    <em>&#9670;</em> 2026 黄琴琴 · 妙帐科技 · DESIGNED WITH PASSION <em>&#9670;</em>
+  </footer>
+
+</main>
+
+
+<!-- ═══════════════════════════════════════════
+     动态视频背景 - Canvas 粒子 & 数据流
+     ═══════════════════════════════════════════ -->
+<script>
+(function(){
+  const C = document.getElementById('bg-canvas');
+  const X = C.getContext('2d');
+  let W, H, pts;
+  const N = 70;
+  const LINK = 150;
+  const COLS = ['rgba(0,184,212,','rgba(41,121,255,','rgba(124,77,255,'];
+
+  function size() { W = C.width = innerWidth; H = C.height = innerHeight; }
+  size(); addEventListener('resize', size);
+
+  function make() {
+    pts = [];
+    for (let i=0; i<N; i++) pts.push({
+      x: Math.random()*W, y: Math.random()*H,
+      vx: (Math.random()-0.5)*0.32,
+      vy: (Math.random()-0.5)*0.32,
+      r: Math.random()*2+0.7,
+      c: COLS[Math.floor(Math.random()*COLS.length)]
+    });
+  }
+  make();
+
+  // 数据流线
+  let streams = [];
+  function initStreams() {
+    streams = [];
+    for (let i=0; i<5; i++) streams.push({
+      x: Math.random()*W, y: -60,
+      len: 80+Math.random()*120,
+      speed: 0.4+Math.random()*0.8,
+      opacity: 0.04+Math.random()*0.06,
+      hue: Math.random()>0.5 ? '0,184,212' : '41,121,255'
+    });
+  }
+  initStreams();
+
+  let mx=-999, my=-999;
+  document.addEventListener('mousemove', function(e){ mx=e.clientX; my=e.clientY; });
+
+  function draw() {
+    X.clearRect(0,0,W,H);
+
+    // 连接线
+    for (let i=0; i<pts.length; i++) {
+      for (let j=i+1; j<pts.length; j++) {
+        const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if (d<LINK) {
+          const a=(1-d/LINK)*0.10;
+          X.beginPath(); X.moveTo(pts[i].x,pts[i].y); X.lineTo(pts[j].x,pts[j].y);
+          X.strokeStyle='rgba(41,121,255,'+a+')'; X.lineWidth=0.5; X.stroke();
+        }
+      }
+    }
+
+    // 鼠标交互连线
+    if (mx>0) {
+      for (let i=0; i<pts.length; i++) {
+        const dx=pts[i].x-mx, dy=pts[i].y-my;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if (d<200) {
+          const a=(1-d/200)*0.16;
+          X.beginPath(); X.moveTo(pts[i].x,pts[i].y); X.lineTo(mx,my);
+          X.strokeStyle='rgba(0,184,212,'+a+')'; X.lineWidth=0.45; X.stroke();
+        }
+      }
+    }
+
+    // 数据流线
+    for (let i=0; i<streams.length; i++) {
+      const s=streams[i];
+      const g=X.createLinearGradient(s.x, s.y, s.x, s.y+s.len);
+      g.addColorStop(0, 'rgba('+s.hue+','+s.opacity+')');
+      g.addColorStop(1, 'rgba('+s.hue+',0)');
+      X.beginPath(); X.moveTo(s.x, s.y); X.lineTo(s.x, s.y+s.len);
+      X.strokeStyle=g; X.lineWidth=1.2; X.stroke();
+    }
+
+    // 粒子
+    for (let i=0; i<pts.length; i++) {
+      const p=pts[i];
+      X.beginPath(); X.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      X.fillStyle=p.c+'0.42)'; X.fill();
+      X.beginPath(); X.arc(p.x, p.y, p.r*2.8, 0, Math.PI*2);
+      X.fillStyle=p.c+'0.05)'; X.fill();
+    }
+  }
+
+  function tick() {
+    for (let i=0; i<pts.length; i++) {
+      const p=pts[i]; p.x+=p.vx; p.y+=p.vy;
+      if (p.x<-20) p.x=W+20; if (p.x>W+20) p.x=-20;
+      if (p.y<-20) p.y=H+20; if (p.y>H+20) p.y=-20;
+    }
+    for (let i=0; i<streams.length; i++) {
+      streams[i].y+=streams[i].speed;
+      if (streams[i].y>H+120) { streams[i].y=-120; streams[i].x=Math.random()*W; }
+    }
+  }
+
+  function loop() { tick(); draw(); requestAnimationFrame(loop); }
+  loop();
+})();
+</script>
+
+</body>
+</html>
