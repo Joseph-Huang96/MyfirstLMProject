@@ -109,70 +109,10 @@
   }
   .photo-inner {
     width: 100%; height: 100%;
-    background: linear-gradient(180deg, #d5e1f5 0%, #b8c9e3 30%, #9bb3d2 60%, #8aa3c0 100%);
+    background: #e8ecf1;
     border-radius: 1px;
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-  /* 证件照人物剪影 + 服装 */
-  .photo-person {
+    overflow: hidden;
     position: relative;
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: flex-end;
-  }
-  .photo-head {
-    width: 60px; height: 72px;
-    background: linear-gradient(175deg, #f5e1c8 0%, #e8cdab 40%, #d4b896 100%);
-    border-radius: 50% 50% 46% 46%;
-    position: relative; z-index: 2;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08), inset 0 2px 3px rgba(255,255,255,0.2);
-  }
-  /* 头发 */
-  .photo-head::before {
-    content: '';
-    position: absolute;
-    top: -6px; left: -8px; right: -8px; height: 42px;
-    background: linear-gradient(175deg, #3d2b1a 0%, #4a3528 40%, #382418 100%);
-    border-radius: 48% 48% 0 0;
-    z-index: 3;
-  }
-  /* 肩部/西装 */
-  .photo-body {
-    width: 110px; height: 80px;
-    background: linear-gradient(180deg, #1a2744 0%, #15203a 100%);
-    border-radius: 42% 42% 0 0;
-    margin-top: -12px;
-    position: relative; z-index: 1;
-    box-shadow: inset 0 2px 4px rgba(255,255,255,0.05);
-  }
-  /* 衬衫领子 */
-  .photo-body::before {
-    content: '';
-    position: absolute;
-    top: 2px; left: 50%; transform: translateX(-50%);
-    width: 0; height: 0;
-    border-left: 16px solid transparent;
-    border-right: 16px solid transparent;
-    border-bottom: 22px solid #f0ebe3;
-    z-index: 0;
-  }
-  /* 领带 */
-  .photo-body::after {
-    content: '';
-    position: absolute;
-    top: 12px; left: 50%; transform: translateX(-50%);
-    width: 10px; height: 36px;
-    background: linear-gradient(180deg, #8b1a2b 0%, #6b1522 100%);
-    border-radius: 2px 2px 0 0;
-    z-index: 1;
-  }
-  /* 照片光线效果 */
-  .photo-inner::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%, rgba(0,0,0,0.05) 100%);
-    z-index: 4; pointer-events: none;
   }
 
   .hero-text { flex: 1; }
@@ -536,9 +476,6 @@
     .hero-divider { margin: 0 auto 18px; }
     .hero-actions { justify-content: center; }
     .photo-outer { width: 150px; height: 180px; }
-    .photo-head { width: 50px; height: 60px; }
-    .photo-head::before { top: -5px; left: -7px; right: -7px; height: 35px; }
-    .photo-body { width: 94px; height: 66px; }
     .about-grid { grid-template-columns: 1fr; gap: 24px; }
     .metrics { grid-template-columns: 1fr 1fr; }
     .blog-grid { grid-template-columns: 1fr; }
@@ -578,10 +515,8 @@
     <div class="photo-wrap">
       <div class="photo-outer">
         <div class="photo-inner">
-          <div class="photo-person">
-            <div class="photo-head"></div>
-            <div class="photo-body"></div>
-          </div>
+          <!-- 替换 src 为你的照片路径，例如 src="photo.jpg" -->
+          <img src="photo.jpg" alt="彭琴琴证件照" style="width:100%;height:100%;object-fit:cover;border-radius:1px;">
         </div>
       </div>
     </div>
