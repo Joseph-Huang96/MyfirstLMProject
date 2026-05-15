@@ -6,30 +6,6 @@
 <title>秒账 — 专为生意人打造的智能进销存管家</title>
 <style>
   :root {
-    /* ═══ ATOMPUNK PALETTE ═══ */
-    --space-dark: #080c18;
-    --space-mid: #0f1629;
-    --space-blue: #162544;
-    --atomic-teal: #00c8b8;
-    --atomic-teal-glow: rgba(0,200,184,0.25);
-    --atomic-orange: #ff6b3d;
-    --atomic-orange-glow: rgba(255,107,61,0.2);
-    --atomic-yellow: #ffd23f;
-    --atomic-red: #e83f5b;
-    --chrome: #c8d0dc;
-    --chrome-light: #e4e8ef;
-    --cream: #fef9f2;
-    --cream-warm: #fdf5e8;
-    --text: #1a1f36;
-    --text-secondary: #4a5068;
-    --text-muted: #7a8098;
-    --starlight: #e2e6f0;
-    --radius: 8px;
-    --radius-sm: 6px;
-    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --font-display: 'Trebuchet MS', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
-  }
     --blue-50: #ecf4fc;
     --blue-100: #d6e8f8;
     --blue-200: #b3d4f2;
@@ -63,205 +39,70 @@
 
   body {
     font-family: var(--font);
-    background: var(--space-dark);
-    color: var(--starlight);
+    background: var(--white);
+    color: var(--text);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
-  /* ══════ 星空背景 ══════ */
-  .starfield {
-    position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background:
-      /* 大星 */
-      radial-gradient(2px 2px at 10% 8%, rgba(255,255,255,0.9), transparent),
-      radial-gradient(3px 3px at 22% 15%, rgba(255,210,63,0.8), transparent),
-      radial-gradient(1.5px 1.5px at 35% 5%, rgba(255,255,255,0.7), transparent),
-      radial-gradient(2.5px 2.5px at 48% 12%, rgba(232,63,91,0.6), transparent),
-      radial-gradient(1px 1px at 55% 3%, rgba(255,255,255,0.5), transparent),
-      radial-gradient(3px 3px at 62% 18%, rgba(100,180,255,0.7), transparent),
-      radial-gradient(2px 2px at 70% 7%, rgba(255,255,255,0.8), transparent),
-      radial-gradient(1.5px 1.5px at 78% 14%, rgba(255,210,63,0.6), transparent),
-      radial-gradient(2px 2px at 85% 9%, rgba(255,107,61,0.6), transparent),
-      radial-gradient(1px 1px at 92% 4%, rgba(255,255,255,0.5), transparent),
-      radial-gradient(2.5px 2.5px at 15% 25%, rgba(255,255,255,0.7), transparent),
-      radial-gradient(1px 1px at 28% 30%, rgba(255,255,255,0.4), transparent),
-      radial-gradient(3px 3px at 42% 22%, rgba(0,200,184,0.6), transparent),
-      radial-gradient(2px 2px at 58% 28%, rgba(255,255,255,0.6), transparent),
-      radial-gradient(1.5px 1.5px at 68% 35%, rgba(255,255,255,0.5), transparent),
-      radial-gradient(2px 2px at 80% 20%, rgba(255,210,63,0.5), transparent),
-      radial-gradient(1px 1px at 90% 32%, rgba(255,255,255,0.4), transparent),
-      radial-gradient(2.5px 2.5px at 5% 42%, rgba(232,63,91,0.5), transparent),
-      radial-gradient(1.5px 1.5px at 33% 40%, rgba(255,255,255,0.6), transparent),
-      radial-gradient(2px 2px at 50% 45%, rgba(100,180,255,0.5), transparent),
-      /* 中小星 */
-      radial-gradient(1px 1px at 8% 55%, rgba(255,255,255,0.5), transparent),
-      radial-gradient(1px 1px at 18% 60%, rgba(255,255,255,0.3), transparent),
-      radial-gradient(1px 1px at 25% 52%, rgba(255,255,255,0.4), transparent),
-      radial-gradient(1px 1px at 38% 58%, rgba(255,255,255,0.35), transparent),
-      radial-gradient(1px 1px at 45% 50%, rgba(255,210,63,0.4), transparent),
-      radial-gradient(1px 1px at 52% 62%, rgba(255,255,255,0.3), transparent),
-      radial-gradient(1px 1px at 60% 48%, rgba(255,255,255,0.45), transparent),
-      radial-gradient(1px 1px at 72% 55%, rgba(255,255,255,0.3), transparent),
-      radial-gradient(1px 1px at 82% 58%, rgba(255,107,61,0.4), transparent),
-      radial-gradient(1px 1px at 88% 50%, rgba(255,255,255,0.35), transparent),
-      radial-gradient(1px 1px at 95% 60%, rgba(0,200,184,0.4), transparent),
-      radial-gradient(1px 1px at 12% 68%, rgba(255,255,255,0.3), transparent),
-      radial-gradient(1px 1px at 30% 72%, rgba(255,255,255,0.35), transparent),
-      radial-gradient(1px 1px at 48% 68%, rgba(255,255,255,0.25), transparent),
-      radial-gradient(1px 1px at 65% 70%, rgba(255,255,255,0.3), transparent),
-      radial-gradient(1px 1px at 78% 65%, rgba(255,210,63,0.35), transparent),
-      radial-gradient(1px 1px at 85% 72%, rgba(255,255,255,0.25), transparent),
-      radial-gradient(1px 1px at 20% 80%, rgba(255,255,255,0.3), transparent),
-      radial-gradient(1px 1px at 40% 85%, rgba(255,255,255,0.25), transparent),
-      radial-gradient(1px 1px at 55% 82%, rgba(255,255,255,0.3), transparent),
-      radial-gradient(1px 1px at 70% 88%, rgba(232,63,91,0.3), transparent),
-      radial-gradient(1px 1px at 90% 85%, rgba(255,255,255,0.25), transparent);
-    background-size: 100% 100%;
-  }
-
-  /* 放射线 (Hero 区域) */
-  .radial-burst {
-    position: fixed; top: -50%; left: -50%;
-    width: 200%; height: 200%; z-index: 0; pointer-events: none;
-    opacity: 0.06;
-    background: conic-gradient(
-      from 0deg at 50% 38%,
-      transparent 0deg, transparent 5deg,
-      rgba(255,107,61,0.4) 5.5deg, transparent 6deg,
-      transparent 32deg,
-      rgba(0,200,184,0.3) 32.5deg, transparent 33.5deg,
-      transparent 60deg,
-      rgba(255,210,63,0.3) 60.5deg, transparent 61.5deg,
-      transparent 95deg,
-      rgba(255,107,61,0.3) 95.5deg, transparent 96.5deg,
-      transparent 130deg,
-      rgba(0,200,184,0.25) 130.5deg, transparent 131.5deg,
-      transparent 165deg,
-      rgba(255,210,63,0.25) 165.5deg, transparent 166.5deg,
-      transparent 200deg,
-      rgba(255,107,61,0.2) 200.5deg, transparent 201.5deg,
-      transparent 235deg,
-      rgba(0,200,184,0.2) 235.5deg, transparent 236.5deg,
-      transparent 270deg,
-      rgba(255,210,63,0.2) 270.5deg, transparent 271.5deg,
-      transparent 305deg,
-      rgba(255,107,61,0.15) 305.5deg, transparent 306.5deg,
-      transparent 340deg,
-      rgba(0,200,184,0.15) 340.5deg, transparent 341.5deg,
-      transparent 360deg
-    );
-  }
-
-  /* 胶片颗粒 */
-  .film-grain {
-    position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    opacity: 0.045;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 180px 180px;
-  }
-
-  /* 泛黄叠加 */
-  .vintage-wash {
-    position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    opacity: 0.06;
-    background: radial-gradient(ellipse at 50% 40%,
-      rgba(255,235,190,0.5) 0%, transparent 60%
-    );
-  }
-
-  /* 边缘晕影 */
-  .vignette {
-    position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background: radial-gradient(ellipse at 50% 40%,
-      transparent 50%, rgba(4,4,12,0.65) 100%
-    );
-  }
-
-  /* 所有内容区置于效果之上 */
-  .main, .nav, .footer, .hero, .section, .proof-bar, .contact-section, .adv-section {
-    position: relative; z-index: 2;
-  }
-
   /* ══════ 导航 ══════ */
   .nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(8,12,24,0.88);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(200,208,220,0.12);
-    height: 62px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--gray-200);
+    height: 64px;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 40px;
   }
   .nav-logo {
     display: flex; align-items: center; gap: 10px;
-    font-family: var(--font-display);
-    font-size: 18px; font-weight: 700; color: var(--starlight);
-    letter-spacing: 2px; text-transform: uppercase;
+    font-size: 20px; font-weight: 700; color: var(--text);
+    letter-spacing: 1px;
   }
   .nav-logo-dot {
-    width: 10px; height: 10px;
-    background: var(--atomic-teal);
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    box-shadow: 0 0 14px var(--atomic-teal-glow);
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--blue-500), var(--cyan));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 16px; font-weight: 900;
   }
   .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
   .nav-links a {
-    font-size: 13px; font-weight: 500; letter-spacing: 1.5px;
-    color: rgba(226,230,240,0.7); text-decoration: none;
-    transition: all 0.25s; text-transform: uppercase;
+    font-size: 14px; font-weight: 500;
+    color: var(--text-secondary); text-decoration: none;
+    transition: color 0.2s;
   }
-  .nav-links a:hover {
-    color: var(--atomic-teal);
-    text-shadow: 0 0 12px var(--atomic-teal-glow);
-  }
+  .nav-links a:hover { color: var(--blue-500); }
   .nav-btn {
-    font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
-    background: var(--atomic-orange);
-    color: #fff; text-transform: uppercase;
-    padding: 8px 22px; border-radius: 4px;
-    text-decoration: none; transition: all 0.3s;
-    box-shadow: 0 0 20px var(--atomic-orange-glow);
-    clip-path: polygon(8px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+    font-size: 13px; font-weight: 600;
+    background: var(--blue-500);
+    color: #fff;
+    padding: 9px 22px; border-radius: 8px;
+    text-decoration: none; transition: all 0.2s;
   }
-  .nav-btn:hover {
-    background: #ff8050;
-    box-shadow: 0 0 32px rgba(255,107,61,0.4);
-    transform: translateY(-1px);
-  }
-
-  /* ══════ 主容器 ══════ */
-  .main { position: relative; z-index: 2; }
-
-  /* ══════ 区块通用 ══════ */
-  .section { padding: 80px 40px; position: relative; }
-  .section-inner { max-width: 1140px; margin: 0 auto; }
-  .section-label {
-    font-family: var(--font-display);
-    font-size: 11px; font-weight: 700; letter-spacing: 4px;
-    color: var(--atomic-teal); text-transform: uppercase;
-    margin-bottom: 10px;
-    text-shadow: 0 0 20px var(--atomic-teal-glow);
-  }
-  .section-title {
-    font-family: var(--font-display);
-    font-size: 32px; font-weight: 800; letter-spacing: 2px;
-    color: var(--starlight); margin-bottom: 14px;
-  }
-  .section-subtitle {
-    font-size: 16px; color: rgba(226,230,240,0.65);
-    max-width: 560px; line-height: 1.7;
-  }
+  .nav-btn:hover { background: var(--blue-600); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(59,139,201,0.3); }
 
   /* ══════ HERO ══════ */
   .hero {
     padding: 140px 40px 100px;
-    background:
-      radial-gradient(ellipse at 50% 45%, rgba(0,200,184,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse at 30% 30%, rgba(255,107,61,0.04) 0%, transparent 50%),
-      radial-gradient(ellipse at 70% 50%, rgba(100,180,255,0.04) 0%, transparent 50%);
+    background: linear-gradient(170deg, #e2eef9 0%, #eaf4fb 30%, #f8fafc 60%, #fefaf9 100%);
     position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -120px; right: -60px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(49,171,212,0.08) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -80px; left: 10%;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(233,126,152,0.06) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
   }
   .hero-inner {
     max-width: 1140px; margin: 0 auto;
@@ -271,70 +112,73 @@
   .hero-content { flex: 1; }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--font-display);
-    font-size: 11px; font-weight: 600; letter-spacing: 3px;
-    color: var(--atomic-teal); text-transform: uppercase;
-    background: rgba(0,200,184,0.06);
-    border: 1px solid rgba(0,200,184,0.2);
-    padding: 6px 18px;
-    clip-path: polygon(10px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    font-size: 13px; font-weight: 600;
+    color: var(--blue-600);
+    background: rgba(59,139,201,0.08);
+    border: 1px solid rgba(59,139,201,0.15);
+    padding: 6px 16px; border-radius: 20px;
     margin-bottom: 22px;
   }
   .hero-badge-dot {
     width: 8px; height: 8px;
-    background: var(--atomic-teal);
-    box-shadow: 0 0 12px var(--atomic-teal-glow);
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    background: var(--blue-500);
+    border-radius: 50%;
   }
   .hero-title {
-    font-family: var(--font-display);
-    font-size: 48px; font-weight: 900; letter-spacing: 2px;
-    color: var(--starlight); line-height: 1.25;
-    margin-bottom: 18px;
-    text-shadow: 0 0 60px rgba(200,208,220,0.15);
+    font-size: 44px; font-weight: 800;
+    color: var(--text); line-height: 1.25;
+    margin-bottom: 18px; letter-spacing: -0.5px;
   }
   .hero-title span {
-    background: linear-gradient(135deg, var(--atomic-teal), var(--atomic-yellow));
+    background: linear-gradient(135deg, var(--blue-500), var(--cyan));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: none;
   }
   .hero-desc {
-    font-size: 17px; color: rgba(226,230,240,0.7);
-    line-height: 1.85; max-width: 500px; margin-bottom: 28px;
+    font-size: 17px; color: var(--text-secondary);
+    line-height: 1.85; max-width: 500px; margin-bottom: 12px;
   }
-  .hero-actions {
-    display: flex; gap: 14px; flex-wrap: wrap;
+  .hero-tagline {
+    font-size: 16px; font-weight: 700; color: var(--text);
+    margin-bottom: 28px;
   }
+  .hero-tagline em { font-style: normal; color: var(--blue-500); }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
   .btn {
     display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--font-display);
-    font-size: 13px; font-weight: 700; letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 13px 28px; border-radius: 4px;
+    font-size: 14px; font-weight: 600;
+    padding: 13px 28px; border-radius: 10px;
     text-decoration: none; cursor: pointer;
-    transition: all 0.3s var(--ease);
-    clip-path: polygon(10px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+    transition: all 0.25s var(--ease);
+    border: none;
   }
   .btn-primary {
-    background: var(--atomic-orange);
+    background: var(--blue-500);
     color: #fff;
-    box-shadow: 0 0 30px var(--atomic-orange-glow);
+    box-shadow: 0 4px 16px rgba(59,139,201,0.25);
   }
   .btn-primary:hover {
-    background: #ff8050;
-    box-shadow: 0 0 44px rgba(255,107,61,0.5);
+    background: var(--blue-600);
+    box-shadow: 0 6px 24px rgba(59,139,201,0.35);
     transform: translateY(-2px);
   }
   .btn-secondary {
-    background: transparent; color: var(--starlight);
-    border: 1px solid rgba(200,208,220,0.25);
-    box-shadow: none;
+    background: var(--white); color: var(--text);
+    border: 1px solid var(--gray-300);
   }
   .btn-secondary:hover {
-    border-color: var(--atomic-teal);
-    color: var(--atomic-teal);
-    box-shadow: 0 0 20px var(--atomic-teal-glow);
+    border-color: var(--blue-400);
+    color: var(--blue-500);
+  }
+  .btn-pink {
+    background: var(--accent-pink);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(233,126,152,0.25);
+  }
+  .btn-pink:hover {
+    background: #e06d88;
+    box-shadow: 0 6px 24px rgba(233,126,152,0.35);
+    transform: translateY(-2px);
   }
 
   /* Hero 右侧设备展示 */
@@ -346,16 +190,16 @@
     position: absolute;
     top: 0; left: 0;
     width: 420px;
-    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.4)) drop-shadow(0 0 30px rgba(0,200,184,0.1));
+    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.12)) drop-shadow(0 0 30px rgba(59,139,201,0.06));
     z-index: 1;
   }
   .laptop-screen {
-    background: linear-gradient(180deg, #2a3045, #1a1f30);
+    background: #e0e5ec;
     border-radius: 10px 10px 0 0;
     padding: 8px 8px 4px 8px;
   }
   .laptop-screen-inner {
-    background: #1a1f30;
+    background: #fff;
     border-radius: 4px 4px 0 0;
     overflow: hidden; line-height: 0;
   }
@@ -366,12 +210,12 @@
   .laptop-base { position: relative; }
   .laptop-hinge {
     height: 4px;
-    background: linear-gradient(180deg, #3a4055, #1a1f30);
+    background: linear-gradient(180deg, #c8cdd5, #a0a6b0);
     border-radius: 0 0 4px 4px;
   }
   .laptop-stand {
     height: 14px;
-    background: linear-gradient(180deg, #3a4055, #252a3d);
+    background: linear-gradient(180deg, #c8cdd5, #b0b5be);
     border-radius: 0 0 10px 10px;
     position: relative;
   }
@@ -379,29 +223,28 @@
     content: '';
     position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
     width: 120px; height: 8px;
-    background: #252a3d;
+    background: #b0b5be;
     border-radius: 0 0 5px 5px;
   }
 
-  /* 手机画框 */
   .device-phone {
     position: absolute;
     top: 30px; right: 0;
     width: 170px;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45)) drop-shadow(0 0 20px rgba(255,107,61,0.08));
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15)) drop-shadow(0 0 20px rgba(233,126,152,0.06));
     z-index: 2;
   }
   .phone-body {
-    background: linear-gradient(180deg, #2a3045, #1a1f30);
+    background: #e0e5ec;
     border-radius: 22px; padding: 8px 6px;
   }
   .phone-notch {
     width: 36px; height: 3px;
-    background: #0a0e18; border-radius: 3px;
+    background: #a0a6b0; border-radius: 3px;
     margin: 0 auto 6px auto;
   }
   .phone-screen {
-    background: #1a1f30;
+    background: #fff;
     border-radius: 14px;
     overflow: hidden; line-height: 0;
   }
@@ -411,51 +254,48 @@
   }
   .phone-home {
     width: 24px; height: 3px;
-    background: #3a4055; border-radius: 3px;
+    background: #c8cdd5; border-radius: 3px;
     margin: 6px auto 0 auto;
   }
 
-  /* Hero 浮动装饰 */
-  .hero-deco {
-    position: absolute; border-radius: 50%; pointer-events: none;
+  /* ══════ 区块通用 ══════ */
+  .section { padding: 80px 40px; }
+  .section-alt { background: var(--gray-50); }
+  .section-inner { max-width: 1140px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 3px;
+    color: var(--blue-500); text-transform: uppercase;
+    margin-bottom: 10px;
   }
-  .hero-deco-1 {
-    width: 350px; height: 350px; top: -100px; right: -80px;
-    background: radial-gradient(circle, rgba(0,200,184,0.07) 0%, transparent 65%);
+  .section-title {
+    font-size: 32px; font-weight: 800;
+    color: var(--text); margin-bottom: 14px; letter-spacing: -0.3px;
   }
-  .hero-deco-2 {
-    width: 250px; height: 250px; bottom: 20px; left: 8%;
-    background: radial-gradient(circle, rgba(255,107,61,0.05) 0%, transparent 65%);
+  .section-subtitle {
+    font-size: 16px; color: var(--text-muted);
+    max-width: 560px; line-height: 1.7;
   }
 
   /* ══════ 案例见证条 ══════ */
-  .proof-bar {
-    padding: 0 40px; margin-top: -30px; position: relative; z-index: 3;
-  }
+  .proof-bar { padding: 0 40px; margin-top: -40px; position: relative; z-index: 3; }
   .proof-inner {
     max-width: 1140px; margin: 0 auto;
-    background: linear-gradient(135deg, rgba(15,22,41,0.95), rgba(10,16,30,0.95));
-    border: 1px solid rgba(200,208,220,0.12);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     padding: 32px 40px;
     display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-lg);
   }
   .proof-item { text-align: center; }
   .proof-num {
-    font-family: var(--font-display);
     font-size: 34px; font-weight: 900;
-    background: linear-gradient(135deg, var(--atomic-teal), var(--atomic-yellow));
+    background: linear-gradient(135deg, var(--blue-500), var(--cyan));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  .proof-label {
-    font-size: 13px; color: rgba(226,230,240,0.55);
-    font-family: var(--font-display);
-    letter-spacing: 1px; margin-top: 4px;
-  }
+  .proof-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 
   /* ══════ 功能卡片 ══════ */
   .features-grid {
@@ -463,143 +303,169 @@
     gap: 24px; margin-top: 40px;
   }
   .feat-card {
-    background: linear-gradient(135deg, rgba(15,22,41,0.9), rgba(10,16,30,0.9));
-    border: 1px solid rgba(200,208,220,0.1);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
     border-radius: var(--radius);
-    padding: 40px; transition: all 0.35s var(--ease);
+    padding: 40px; transition: all 0.3s var(--ease);
     position: relative; overflow: hidden;
-    backdrop-filter: blur(8px);
   }
   .feat-card:hover {
-    border-color: var(--atomic-teal);
-    box-shadow: 0 0 40px rgba(0,200,184,0.08), 0 8px 30px rgba(0,0,0,0.3);
+    border-color: var(--blue-200);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-3px);
   }
-  .feat-card::after {
-    content: ''; position: absolute;
-    top: 0; left: 0; width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--atomic-teal), var(--atomic-orange), transparent);
-    opacity: 0; transition: opacity 0.35s;
-  }
-  .feat-card:hover::after { opacity: 1; }
   .feat-icon {
-    width: 54px; height: 54px;
-    clip-path: polygon(50% 0%, 100% 30%, 100% 70%, 50% 100%, 0% 70%, 0% 30%);
+    width: 50px; height: 50px;
+    border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 26px; margin-bottom: 20px;
+    font-size: 24px; margin-bottom: 20px;
   }
-  .feat-icon.c { background: linear-gradient(135deg, rgba(0,200,184,0.15), rgba(0,200,184,0.05)); box-shadow: 0 0 20px rgba(0,200,184,0.1); }
-  .feat-icon.b { background: linear-gradient(135deg, rgba(100,180,255,0.15), rgba(100,180,255,0.05)); box-shadow: 0 0 20px rgba(100,180,255,0.1); }
-  .feat-icon.p { background: linear-gradient(135deg, rgba(232,63,91,0.15), rgba(232,63,91,0.05)); box-shadow: 0 0 20px rgba(232,63,91,0.1); }
-  .feat-icon.g { background: linear-gradient(135deg, rgba(255,210,63,0.15), rgba(255,210,63,0.05)); box-shadow: 0 0 20px rgba(255,210,63,0.1); }
-  .feat-title {
-    font-family: var(--font-display);
-    font-size: 19px; font-weight: 700; margin-bottom: 10px;
-    color: var(--starlight); letter-spacing: 1px;
-  }
-  .feat-desc {
-    font-size: 14px; color: rgba(226,230,240,0.55);
-    line-height: 1.75; margin-bottom: 18px;
-  }
-  .feat-points {
-    list-style: none; display: flex; flex-direction: column; gap: 10px;
-  }
+  .feat-icon.c { background: var(--cyan-light); color: var(--cyan); }
+  .feat-icon.b { background: var(--blue-50); color: var(--blue-500); }
+  .feat-icon.p { background: #fef0f3; color: var(--accent-pink); }
+  .feat-icon.g { background: #fff7ed; color: var(--accent-orange); }
+  .feat-title { font-size: 19px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .feat-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 18px; }
+  .feat-points { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .feat-points li {
-    font-size: 13.5px; color: rgba(226,230,240,0.6);
+    font-size: 13.5px; color: var(--text-secondary);
     padding-left: 18px; position: relative; line-height: 1.6;
   }
   .feat-points li::before {
     content: ''; position: absolute; left: 0; top: 8px;
-    width: 5px; height: 5px;
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    width: 6px; height: 6px; border-radius: 50%;
   }
-  .feat-points li:nth-child(1)::before { background: var(--atomic-teal); }
-  .feat-points li:nth-child(2)::before { background: var(--atomic-orange); }
-  .feat-points li:nth-child(3)::before { background: var(--atomic-yellow); }
+  .feat-points li:nth-child(1)::before { background: var(--blue-500); }
+  .feat-points li:nth-child(2)::before { background: var(--accent-pink); }
+  .feat-points li:nth-child(3)::before { background: var(--accent-orange); }
 
   /* ══════ 优势 + 价格 ══════ */
-  .adv-section {
-    background: linear-gradient(180deg, rgba(10,16,30,0.4) 0%, rgba(8,12,24,0.6) 50%, rgba(10,16,30,0.4) 100%);
-    border-top: 1px solid rgba(200,208,220,0.06);
-    border-bottom: 1px solid rgba(200,208,220,0.06);
-  }
   .adv-grid {
     display: grid; grid-template-columns: repeat(2, 1fr);
     gap: 20px; margin: 40px 0;
   }
   .adv-card {
-    background: linear-gradient(135deg, rgba(22,37,68,0.5), rgba(15,22,41,0.5));
-    border: 1px solid rgba(200,208,220,0.08);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
     border-radius: var(--radius-sm);
     padding: 30px;
     display: flex; gap: 20px; align-items: flex-start;
     transition: all 0.3s;
-    backdrop-filter: blur(6px);
   }
   .adv-card:hover {
-    border-color: var(--atomic-teal);
-    box-shadow: 0 0 24px rgba(0,200,184,0.06);
+    border-color: var(--blue-200);
+    box-shadow: var(--shadow);
     transform: translateX(4px);
   }
   .adv-num {
-    font-family: var(--font-display);
     font-size: 28px; font-weight: 900;
-    color: rgba(200,208,220,0.1); flex-shrink: 0;
-    line-height: 1;
+    color: var(--gray-300); flex-shrink: 0; line-height: 1;
   }
-  .adv-title {
-    font-family: var(--font-display);
-    font-size: 16px; font-weight: 700; margin-bottom: 6px;
-    color: var(--starlight); letter-spacing: 1px;
-  }
-  .adv-desc {
-    font-size: 13.5px; color: rgba(226,230,240,0.55);
-    line-height: 1.7;
-  }
+  .adv-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+  .adv-desc { font-size: 13.5px; color: var(--text-secondary); line-height: 1.7; }
 
   /* 价格卡片 */
   .price-wrap { margin-top: 40px; }
   .price-card {
-    background: linear-gradient(135deg, rgba(22,37,68,0.7), rgba(10,16,30,0.8));
-    border: 2px solid var(--atomic-teal);
+    background: linear-gradient(135deg, #f0f6fb, #fff);
+    border: 2px solid var(--blue-400);
     border-radius: var(--radius);
     padding: 44px; text-align: center;
     max-width: 500px; margin: 0 auto;
     position: relative; overflow: hidden;
-    box-shadow: 0 0 50px rgba(0,200,184,0.1), 0 8px 40px rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 40px rgba(59,139,201,0.08);
   }
   .price-card::before {
-    content: 'ATOMIC DEAL';
-    position: absolute; top: 18px; right: -38px;
-    font-size: 10px; font-weight: 700; letter-spacing: 2px;
-    color: #080c18; background: var(--atomic-teal);
-    padding: 5px 48px; transform: rotate(45deg);
+    content: '限时优惠';
+    position: absolute; top: 18px; right: -36px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    color: #fff; background: var(--accent-pink);
+    padding: 5px 45px; transform: rotate(45deg);
   }
   .price-amount {
-    font-family: var(--font-display);
-    font-size: 56px; font-weight: 900; color: var(--starlight);
+    font-size: 56px; font-weight: 900; color: var(--text);
     line-height: 1; margin-bottom: 6px;
   }
-  .price-amount sub {
-    font-size: 16px; color: rgba(226,230,240,0.4); font-weight: 500;
-  }
-  .price-unit {
-    font-size: 14px; color: rgba(226,230,240,0.45);
-    margin-bottom: 24px;
-  }
+  .price-amount sub { font-size: 16px; color: var(--text-muted); font-weight: 500; }
+  .price-unit { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
   .price-tags {
     display: flex; flex-wrap: wrap; justify-content: center;
     gap: 10px; margin-bottom: 24px;
   }
   .price-tag {
-    font-size: 11px; font-weight: 500; letter-spacing: 1px;
-    color: rgba(226,230,240,0.6);
-    background: rgba(200,208,220,0.05);
-    border: 1px solid rgba(200,208,220,0.1);
-    padding: 6px 16px; border-radius: 3px;
+    font-size: 12px; font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    padding: 6px 16px; border-radius: 20px;
   }
-  .price-card .btn { display: inline-flex; }
+
+  /* ══════ 打印机产品 ══════ */
+  .printer-section {
+    background: linear-gradient(170deg, #f8fafc 0%, #f0f6fb 50%, #fefaf9 100%);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .printer-grid {
+    display: flex; gap: 50px; align-items: center;
+    margin-top: 40px;
+  }
+  .printer-image-wrap {
+    flex-shrink: 0; width: 360px;
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-200);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .printer-image-wrap img {
+    width: 100%; height: auto; object-fit: contain;
+    border-radius: 8px;
+  }
+  .printer-info { flex: 1; }
+  .printer-name {
+    font-size: 28px; font-weight: 800; color: var(--text);
+    margin-bottom: 8px;
+  }
+  .printer-model {
+    font-size: 14px; color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .printer-desc {
+    font-size: 15px; color: var(--text-secondary);
+    line-height: 1.8; margin-bottom: 24px;
+  }
+  .printer-specs {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 14px; margin-bottom: 24px;
+  }
+  .printer-spec {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: var(--text-secondary);
+  }
+  .printer-spec-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .printer-spec-icon.s1 { background: var(--cyan-light); }
+  .printer-spec-icon.s2 { background: var(--blue-50); }
+  .printer-spec-icon.s3 { background: #fef0f3; }
+  .printer-spec-icon.s4 { background: #fff7ed; }
+  .printer-price-row {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 24px;
+  }
+  .printer-price {
+    font-size: 36px; font-weight: 900; color: var(--text);
+  }
+  .printer-price sub { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+  .printer-price-original {
+    font-size: 16px; color: var(--text-muted);
+    text-decoration: line-through;
+  }
 
   /* ══════ 场景卡片 ══════ */
   .scenes-grid {
@@ -607,28 +473,20 @@
     gap: 20px; margin-top: 40px;
   }
   .scene-card {
-    background: linear-gradient(135deg, rgba(15,22,41,0.8), rgba(10,16,30,0.8));
-    border: 1px solid rgba(200,208,220,0.08);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
     border-radius: var(--radius-sm);
     padding: 32px 22px; text-align: center;
     transition: all 0.3s;
-    backdrop-filter: blur(6px);
   }
   .scene-card:hover {
-    border-color: var(--atomic-orange);
-    box-shadow: 0 0 30px rgba(255,107,61,0.06);
+    border-color: var(--accent-pink);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-3px);
   }
   .scene-icon { font-size: 38px; margin-bottom: 16px; }
-  .scene-name {
-    font-family: var(--font-display);
-    font-size: 16px; font-weight: 700; margin-bottom: 8px;
-    color: var(--starlight); letter-spacing: 1px;
-  }
-  .scene-desc {
-    font-size: 13px; color: rgba(226,230,240,0.5);
-    line-height: 1.7;
-  }
+  .scene-name { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+  .scene-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
 
   /* ══════ 用户证言 ══════ */
   .testimonials-grid {
@@ -636,42 +494,34 @@
     gap: 24px; margin-top: 40px;
   }
   .testimonial-card {
-    background: linear-gradient(135deg, rgba(15,22,41,0.8), rgba(10,16,30,0.8));
-    border: 1px solid rgba(200,208,220,0.08);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
     border-radius: var(--radius-sm);
     padding: 32px 28px;
     transition: all 0.3s; position: relative;
-    backdrop-filter: blur(6px);
   }
   .testimonial-card:hover {
-    border-color: var(--atomic-yellow);
-    box-shadow: 0 0 30px rgba(255,210,63,0.04);
+    border-color: var(--accent-orange);
+    box-shadow: var(--shadow-lg);
   }
   .testimonial-card::before {
     content: '\201C'; position: absolute; top: 4px; left: 18px;
-    font-size: 64px; color: rgba(200,208,220,0.04);
+    font-size: 64px; color: var(--gray-200);
     font-family: Georgia, serif; line-height: 1;
     pointer-events: none;
   }
   .testimonial-text {
-    font-size: 14px; color: rgba(226,230,240,0.6);
+    font-size: 14px; color: var(--text-secondary);
     line-height: 1.85; margin-bottom: 20px;
     position: relative; z-index: 1;
   }
-  .testimonial-author {
-    font-family: var(--font-display);
-    font-size: 13px; font-weight: 600; color: var(--starlight);
-    letter-spacing: 1px;
-  }
-  .testimonial-role {
-    font-size: 12px; color: rgba(226,230,240,0.35);
-    margin-top: 2px;
-  }
+  .testimonial-author { font-size: 13px; font-weight: 600; color: var(--text); }
+  .testimonial-role { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 
   /* ══════ 联系区域 ══════ */
   .contact-section {
-    background: linear-gradient(180deg, rgba(10,16,30,0.6) 0%, rgba(8,12,24,0.8) 100%);
-    border-top: 1px solid rgba(200,208,220,0.06);
+    background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+    border-top: 1px solid var(--gray-200);
   }
   .contact-grid {
     display: grid;
@@ -683,30 +533,26 @@
     display: flex; align-items: center; gap: 16px;
     padding: 15px 18px; border-radius: var(--radius-sm);
     transition: all 0.25s;
-    border-bottom: 1px solid rgba(200,208,220,0.06);
+    border-bottom: 1px solid var(--gray-100);
   }
   .ci:last-child { border-bottom: none; }
-  .ci:hover { background: rgba(0,200,184,0.04); }
+  .ci:hover { background: var(--blue-50); }
   .ci-icon {
-    width: 46px; height: 46px; border-radius: 4px;
+    width: 46px; height: 46px; border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     font-size: 20px; flex-shrink: 0;
   }
-  .ci-icon.c { background: rgba(0,200,184,0.1); }
-  .ci-icon.b { background: rgba(100,180,255,0.1); }
-  .ci-icon.p { background: rgba(232,63,91,0.1); }
+  .ci-icon.c { background: var(--cyan-light); }
+  .ci-icon.b { background: var(--blue-50); }
+  .ci-icon.p { background: #fef0f3; }
   .ci-label {
-    font-family: var(--font-display);
-    font-size: 10px; font-weight: 600; letter-spacing: 3px;
-    color: rgba(226,230,240,0.4);
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    color: var(--text-muted); text-transform: uppercase;
   }
-  .ci-value {
-    font-size: 14px; font-weight: 600; color: var(--starlight);
-    word-break: break-all;
-  }
+  .ci-value { font-size: 15px; font-weight: 600; color: var(--text); }
   .contact-divider {
     width: 1px; min-height: 240px;
-    background: linear-gradient(180deg, transparent, rgba(200,208,220,0.1), transparent);
+    background: linear-gradient(180deg, transparent, var(--gray-300), transparent);
     align-self: stretch;
   }
   .contact-side {
@@ -716,88 +562,177 @@
   .qr-wrap { position: relative; width: 148px; height: 148px; }
   .qr-outer {
     position: absolute; inset: -8px; border-radius: 14px;
-    border: 1px solid rgba(200,208,220,0.1);
+    border: 1px solid var(--gray-200);
   }
   .qr-inner {
     width: 100%; height: 100%; border-radius: 10px;
-    background: #fff; border: 1px solid rgba(200,208,220,0.15);
+    background: #fff; border: 1px solid var(--gray-200);
     padding: 8px; position: relative; z-index: 1;
     transition: all 0.3s;
   }
   .qr-inner:hover {
-    border-color: var(--atomic-teal);
-    box-shadow: 0 0 30px var(--atomic-teal-glow);
+    border-color: var(--blue-400);
+    box-shadow: 0 0 20px rgba(59,139,201,0.15);
   }
   .qr-inner img { width: 100%; height: 100%; object-fit: contain; }
   .qr-cap {
-    font-family: var(--font-display);
-    font-size: 10px; font-weight: 600; letter-spacing: 2px;
-    color: rgba(226,230,240,0.4);
+    font-size: 11px; font-weight: 600; letter-spacing: 1px;
+    color: var(--text-muted);
   }
   .photo-mini {
     width: 64px; height: 76px;
-    background: #fff; border-radius: 4px;
-    border: 1px solid rgba(200,208,220,0.15);
+    background: #fff; border-radius: 8px;
+    border: 1px solid var(--gray-200);
     overflow: hidden; transition: all 0.3s;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    box-shadow: var(--shadow-sm);
   }
   .photo-mini:hover {
-    border-color: var(--atomic-teal);
-    box-shadow: 0 0 24px var(--atomic-teal-glow);
+    border-color: var(--blue-400);
+    box-shadow: 0 0 20px rgba(59,139,201,0.15);
   }
   .photo-mini img { width: 100%; height: 100%; object-fit: cover; }
 
   /* ══════ CTA Banner ══════ */
   .cta-banner {
-    background: linear-gradient(135deg, rgba(22,37,68,0.9) 0%, rgba(10,16,30,0.95) 100%);
-    border: 1px solid rgba(0,200,184,0.15);
+    background: linear-gradient(135deg, #f0f6fb, #fff);
+    border: 1px solid var(--blue-200);
     border-radius: var(--radius); padding: 52px 48px;
     text-align: center; margin-top: 40px;
-    position: relative; overflow: hidden;
-    box-shadow: 0 0 60px rgba(0,200,184,0.05);
-  }
-  .cta-banner::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--atomic-teal), var(--atomic-orange), transparent);
   }
   .cta-banner-title {
-    font-family: var(--font-display);
     font-size: 26px; font-weight: 800; margin-bottom: 12px;
-    color: var(--starlight); letter-spacing: 2px;
+    color: var(--text);
   }
   .cta-banner-desc {
-    font-size: 15px; color: rgba(226,230,240,0.5);
+    font-size: 15px; color: var(--text-muted);
     margin-bottom: 28px;
   }
   .btn-light {
     display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--font-display);
-    font-size: 14px; font-weight: 700; letter-spacing: 2px;
-    background: var(--atomic-teal); color: #080c18;
-    padding: 14px 32px; border-radius: 4px;
+    font-size: 14px; font-weight: 700;
+    background: var(--blue-500); color: #fff;
+    padding: 14px 32px; border-radius: 10px;
     text-decoration: none; transition: all 0.3s;
-    clip-path: polygon(10px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-    box-shadow: 0 0 30px var(--atomic-teal-glow);
+    box-shadow: 0 4px 16px rgba(59,139,201,0.25);
+    border: none; cursor: pointer;
   }
   .btn-light:hover {
-    box-shadow: 0 0 48px rgba(0,200,184,0.5);
+    background: var(--blue-600);
+    box-shadow: 0 6px 24px rgba(59,139,201,0.35);
     transform: translateY(-2px);
   }
 
   /* ══════ Footer ══════ */
   .footer {
     text-align: center; padding: 40px;
-    border-top: 1px solid rgba(200,208,220,0.08);
-    background: var(--space-dark);
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
   }
   .footer-brand {
-    font-family: var(--font-display);
-    font-size: 14px; font-weight: 700; letter-spacing: 3px;
-    color: var(--starlight); text-transform: uppercase;
+    font-size: 14px; font-weight: 700; letter-spacing: 2px;
+    color: var(--text);
   }
   .footer-info {
-    font-size: 11px; color: rgba(226,230,240,0.3);
-    margin-top: 6px; letter-spacing: 1px;
+    font-size: 12px; color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  /* ══════ 下单弹窗 ══════ */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .modal {
+    background: #fff; border-radius: 20px;
+    padding: 40px; max-width: 520px; width: 90%;
+    max-height: 90vh; overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    animation: slideUp 0.3s ease;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 20px;
+    width: 36px; height: 36px;
+    border-radius: 50%; border: none;
+    background: var(--gray-100);
+    font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted);
+    transition: all 0.2s;
+  }
+  .modal-close:hover { background: var(--gray-200); color: var(--text); }
+  .modal-title {
+    font-size: 22px; font-weight: 800; color: var(--text);
+    margin-bottom: 6px;
+  }
+  .modal-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+
+  .form-group { margin-bottom: 18px; }
+  .form-label {
+    display: block; font-size: 13px; font-weight: 600;
+    color: var(--text); margin-bottom: 6px;
+  }
+  .form-input, .form-select {
+    width: 100%; padding: 12px 16px;
+    font-size: 15px; border: 1px solid var(--gray-300);
+    border-radius: 10px; outline: none;
+    transition: border-color 0.2s;
+    font-family: var(--font);
+  }
+  .form-input:focus, .form-select:focus {
+    border-color: var(--blue-500);
+    box-shadow: 0 0 0 3px rgba(59,139,201,0.1);
+  }
+  .form-select { background: #fff; cursor: pointer; }
+
+  .modal-actions { display: flex; gap: 12px; margin-top: 8px; }
+  .modal-actions .btn { flex: 1; justify-content: center; }
+
+  /* 订单结果 */
+  .order-result { text-align: center; }
+  .order-result-header {
+    font-size: 18px; font-weight: 700; color: var(--text);
+    margin-bottom: 20px;
+  }
+  .order-info-card {
+    background: var(--gray-50);
+    border-radius: 12px; padding: 20px;
+    text-align: left; margin-bottom: 24px;
+    border: 1px solid var(--gray-200);
+  }
+  .order-info-row {
+    display: flex; justify-content: space-between;
+    padding: 8px 0; font-size: 14px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .order-info-row:last-child { border-bottom: none; }
+  .order-info-row .lbl { color: var(--text-muted); }
+  .order-info-row .val { font-weight: 600; color: var(--text); }
+  .order-qr-wrap {
+    display: inline-block;
+    background: #fff; padding: 16px;
+    border-radius: 16px;
+    border: 2px solid var(--blue-200);
+    box-shadow: 0 8px 30px rgba(59,139,201,0.1);
+    margin-bottom: 16px;
+  }
+  .order-qr-wrap img { width: 180px; height: 180px; display: block; }
+  .order-qr-hint {
+    font-size: 13px; color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .order-qr-amount {
+    font-size: 20px; font-weight: 800; color: var(--accent-pink);
+    margin-bottom: 20px;
+  }
+  .order-id {
+    font-size: 12px; color: var(--text-muted);
+    font-family: monospace; margin-top: 12px;
   }
 
   /* ══════ 响应式 ══════ */
@@ -816,14 +751,19 @@
     .testimonials-grid { grid-template-columns: 1fr; }
     .proof-inner { grid-template-columns: repeat(3, 1fr); }
     .contact-grid { grid-template-columns: 1fr; gap: 28px; }
-    .contact-divider { width: 100%; height: 1px; min-height: unset; background: linear-gradient(90deg, transparent, rgba(200,208,220,0.1), transparent); }
+    .contact-divider { width: 100%; height: 1px; min-height: unset; background: linear-gradient(90deg, transparent, var(--gray-300), transparent); }
     .section-title { font-size: 26px; }
+    .printer-grid { flex-direction: column; text-align: center; }
+    .printer-image-wrap { width: 100%; max-width: 360px; }
+    .printer-specs { justify-items: center; }
+    .printer-price-row { justify-content: center; }
+    .printer-spec { justify-content: center; }
   }
   @media (max-width: 540px) {
     .nav { padding: 0 16px; }
     .nav-links { gap: 14px; }
-    .nav-links a { font-size: 10px; }
-    .nav-btn { font-size: 10px; padding: 6px 14px; }
+    .nav-links a { font-size: 11px; }
+    .nav-btn { font-size: 11px; padding: 7px 14px; }
     .hero-title { font-size: 30px; }
     .section-title { font-size: 22px; }
     .scenes-grid { grid-template-columns: 1fr; }
@@ -831,354 +771,507 @@
     .price-card { padding: 30px 24px; }
     .cta-banner { padding: 36px 24px; }
     .feat-card { padding: 28px; }
+    .printer-specs { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- 原子时代视觉层 -->
-<div class="starfield"></div>
-<div class="radial-burst"></div>
-<div class="film-grain"></div>
-<div class="vintage-wash"></div>
-<div class="vignette"></div>
-
 <!-- ══════ 导航 ══════ -->
 <nav class="nav">
   <div class="nav-logo">
-    <span class="nav-logo-dot"></span>
+    <span class="nav-logo-dot">秒</span>
     秒账
   </div>
   <ul class="nav-links">
     <li><a href="#features">功能</a></li>
     <li><a href="#advantage">优势</a></li>
+    <li><a href="#printer">硬件</a></li>
     <li><a href="#scenes">场景</a></li>
-    <li><a href="#testimonials">口碑</a></li>
     <li><a href="#contact">联系</a></li>
   </ul>
   <a href="#contact" class="nav-btn">免费试用</a>
 </nav>
 
-<main class="main">
-
-  <!-- ══════ HERO · 品牌主视觉 ══════ -->
-  <section class="hero">
-    <div class="hero-deco hero-deco-1"></div>
-    <div class="hero-deco hero-deco-2"></div>
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          千万商户的信赖之选
-        </div>
-        <h1 class="hero-title">
-          秒账 — 专为生意人打造的<br><span>智能进销存管家</span>
-        </h1>
-        <p class="hero-desc">
-          让生意数据"秒级"流转，管账、管货、管店，一部手机全搞定。
-        </p>
-        <p class="hero-desc" style="font-size:15px;margin-bottom:32px;">
-          告别手工开单的繁琐、库存盘点的手忙脚乱、客户欠款的糊涂账。秒账是一款千万商户正在使用的SaaS进销存软件，致力于用数字技术重构生意管理流程。无论您是经营批发、零售，还是生产加工，秒账都能让您的经营效率翻倍，业绩轻松增长。
-        </p>
-        <p style="font-size:17px;font-weight:700;color:var(--starlight);margin-bottom:28px;">
-          不仅管得<span style="color:var(--atomic-teal);">细</span>，更要算得<span style="color:var(--atomic-teal);">准</span>；省下时间，陪家人，做更大的生意！
-        </p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">立即体验 &#8594;</a>
-          <a href="#features" class="btn btn-secondary">查看功能 &#8595;</a>
-        </div>
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        千万商户的信赖之选
       </div>
-
-      <!-- 右侧设备展示 -->
-      <div class="hero-showcase">
-        <!-- 电脑画框 (1.jpg - 横屏截图) -->
-        <div class="device-laptop">
-          <div class="laptop-screen">
-            <div class="laptop-screen-inner">
-              <img src="1.jpg" alt="秒账电脑端界面">
-            </div>
-          </div>
-          <div class="laptop-base">
-            <div class="laptop-hinge"></div>
-            <div class="laptop-stand"></div>
-          </div>
-        </div>
-        <!-- 手机画框 (2.jpg - 竖屏截图) -->
-        <div class="device-phone">
-          <div class="phone-body">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <img src="2.jpg" alt="秒账手机端界面">
-            </div>
-            <div class="phone-home"></div>
-          </div>
-        </div>
+      <h1 class="hero-title">
+        秒账 — 专为生意人打造的<br><span>智能进销存管家</span>
+      </h1>
+      <p class="hero-desc">
+        让生意数据"秒级"流转，管账、管货、管店，一部手机全搞定。
+      </p>
+      <p class="hero-desc" style="font-size:15px;margin-bottom:8px;">
+        告别手工开单的繁琐、库存盘点的手忙脚乱、客户欠款的糊涂账。秒账是一款千万商户正在使用的SaaS进销存软件，致力于用数字技术重构生意管理流程。无论您是经营批发、零售，还是生产加工，秒账都能让您的经营效率翻倍，业绩轻松增长。
+      </p>
+      <p class="hero-tagline">
+        不仅管得<em>细</em>，更要算得<em>准</em>；省下时间，陪家人，做更大的生意！
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">立即体验 →</a>
+        <a href="#features" class="btn btn-secondary">查看功能 ↓</a>
       </div>
     </div>
-  </section>
 
-  <!-- ══════ 案例见证条 ══════ -->
-  <div class="proof-bar">
-    <div class="proof-inner">
-      <div class="proof-item">
-        <div class="proof-num">4亿</div>
-        <div class="proof-label">累计研发投入</div>
+    <div class="hero-showcase">
+      <div class="device-laptop">
+        <div class="laptop-screen">
+          <div class="laptop-screen-inner">
+            <img src="1.jpg" alt="秒账电脑端界面">
+          </div>
+        </div>
+        <div class="laptop-base">
+          <div class="laptop-hinge"></div>
+          <div class="laptop-stand"></div>
+        </div>
       </div>
-      <div class="proof-item">
-        <div class="proof-num">40<span style="font-size:18px;">+</span></div>
-        <div class="proof-label">覆盖行业，用户遍布全国</div>
-      </div>
-      <div class="proof-item">
-        <div class="proof-num">30<span style="font-size:18px;">%</span>~50<span style="font-size:18px;">%</span></div>
-        <div class="proof-label">云仓项目降低商户仓储成本</div>
+      <div class="device-phone">
+        <div class="phone-body">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="2.jpg" alt="秒账手机端界面">
+          </div>
+          <div class="phone-home"></div>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ══════ 模块二：核心功能亮点 ══════ -->
-  <section class="section" id="features">
-    <div class="section-inner">
-      <div class="section-label">Core Features</div>
-      <h2 class="section-title">四大核心功能，重构生意管理</h2>
-      <p class="section-subtitle">每一个功能都源自千万商户的真实需求，用数字技术让经营更高效。</p>
+<!-- ══════ 案例见证条 ══════ -->
+<div class="proof-bar">
+  <div class="proof-inner">
+    <div class="proof-item">
+      <div class="proof-num">4亿</div>
+      <div class="proof-label">累计研发投入</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">40<span style="font-size:18px;">+</span></div>
+      <div class="proof-label">覆盖行业，用户遍布全国</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">30<span style="font-size:18px;">%</span>~50<span style="font-size:18px;">%</span></div>
+      <div class="proof-label">云仓项目降低商户仓储成本</div>
+    </div>
+  </div>
+</div>
 
-      <div class="features-grid">
+<!-- ══════ 核心功能 ══════ -->
+<section class="section" id="features">
+  <div class="section-inner">
+    <div class="section-label">Core Features</div>
+    <h2 class="section-title">四大核心功能，重构生意管理</h2>
+    <p class="section-subtitle">每一个功能都源自千万商户的真实需求，用数字技术让经营更高效。</p>
 
-        <!-- 功能 1 -->
-        <div class="feat-card">
-          <div class="feat-icon c">&#x1F4F1;</div>
-          <div class="feat-title">快如闪电的"秒级"开单</div>
-          <p class="feat-desc">彻底告别手写单看不清、算错账的痛点，让开单像聊天一样简单。</p>
-          <ul class="feat-points">
-            <li><strong>多端同步：</strong>支持手机、iPad、电脑多端口同时登陆，数据实时同步。店员在店内开单，老板在外地也能实时查看经营流水。</li>
-            <li><strong>智能录入：</strong>支持扫码开单、语音添加商品，甚至拍照识别纸质单据。</li>
-            <li><strong>批量操作：</strong>购物车模式批量勾选产品，上百个商品一键生成单据，结算效率提升 3 倍。</li>
-          </ul>
-        </div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon c">📱</div>
+        <div class="feat-title">快如闪电的"秒级"开单</div>
+        <p class="feat-desc">彻底告别手写单看不清、算错账的痛点，让开单像聊天一样简单。</p>
+        <ul class="feat-points">
+          <li><strong>多端同步：</strong>支持手机、iPad、电脑多端口同时登陆，数据实时同步。店员在店内开单，老板在外地也能实时查看经营流水。</li>
+          <li><strong>智能录入：</strong>支持扫码开单、语音添加商品，甚至拍照识别纸质单据。</li>
+          <li><strong>批量操作：</strong>购物车模式批量勾选产品，上百个商品一键生成单据，结算效率提升 3 倍。</li>
+        </ul>
+      </div>
 
-        <!-- 功能 2 -->
-        <div class="feat-card">
-          <div class="feat-icon b">&#x1F4E6;</div>
-          <div class="feat-title">精准透明的"零误差"库存</div>
-          <p class="feat-desc">库存数据自动扣减，卖了多少、还剩多少，打开手机一目了然。</p>
-          <ul class="feat-points">
-            <li><strong>实时预警：</strong>支持设置库存上下限预警，缺货或积压自动提醒，避免商机流失。</li>
-            <li><strong>全流程追溯：</strong>从采购入库到销售出库，多仓库调拨管理。批次、保质期、序列号全程可追溯，适合食品、电子等精细化管理需求。</li>
-            <li><strong>扫码入库：</strong>上游采购一键复制，无需手动录入，到货秒入库。</li>
-          </ul>
-        </div>
+      <div class="feat-card">
+        <div class="feat-icon b">📦</div>
+        <div class="feat-title">精准透明的"零误差"库存</div>
+        <p class="feat-desc">库存数据自动扣减，卖了多少、还剩多少，打开手机一目了然。</p>
+        <ul class="feat-points">
+          <li><strong>实时预警：</strong>支持设置库存上下限预警，缺货或积压自动提醒，避免商机流失。</li>
+          <li><strong>全流程追溯：</strong>从采购入库到销售出库，多仓库调拨管理。批次、保质期、序列号全程可追溯，适合食品、电子等精细化管理需求。</li>
+          <li><strong>扫码入库：</strong>上游采购一键复制，无需手动录入，到货秒入库。</li>
+        </ul>
+      </div>
 
-        <!-- 功能 3 -->
-        <div class="feat-card">
-          <div class="feat-icon p">&#x1F4B0;</div>
-          <div class="feat-title">省心安全的"自动化"财务</div>
-          <p class="feat-desc">系统自动统计，账款清晰明了，让你清楚知道"到底赚了多少"。</p>
-          <ul class="feat-points">
-            <li><strong>客户对账无忧：</strong>系统自动统计每个客户的欠款、预付款和历史交易价格。送货日期智能提醒，账款到期自动推送，烂账、坏账不再有。</li>
-            <li><strong>精准毛利计算：</strong>每一单的利润自动核算，支持运费等附加费用均摊到成本。</li>
-            <li><strong>多维报表：</strong>销售排行、滞销品分析、利润报表一键生成，经营决策不再拍脑袋。</li>
-          </ul>
-        </div>
+      <div class="feat-card">
+        <div class="feat-icon p">💰</div>
+        <div class="feat-title">省心安全的"自动化"财务</div>
+        <p class="feat-desc">系统自动统计，账款清晰明了，让你清楚知道"到底赚了多少"。</p>
+        <ul class="feat-points">
+          <li><strong>客户对账无忧：</strong>系统自动统计每个客户的欠款、预付款和历史交易价格。送货日期智能提醒，账款到期自动推送，烂账、坏账不再有。</li>
+          <li><strong>精准毛利计算：</strong>每一单的利润自动核算，支持运费等附加费用均摊到成本。</li>
+          <li><strong>多维报表：</strong>销售排行、滞销品分析、利润报表一键生成，经营决策不再拍脑袋。</li>
+        </ul>
+      </div>
 
-        <!-- 功能 4 -->
-        <div class="feat-card">
-          <div class="feat-icon g">&#x1F310;</div>
-          <div class="feat-title">赋能生意的"营销与链接"</div>
-          <p class="feat-desc">拓宽销售渠道，打破地域限制，让生意连接更多可能。</p>
-          <ul class="feat-points">
-            <li><strong>线上云店：</strong>软件配套小程序商城，熟客可在线自助下单，帮你拓宽销售渠道。</li>
-            <li><strong>远程协同：</strong>支持异地仓库远程打印发货单，海外/外地客户下单，国内仓库同步备货，打破地域限制。</li>
-            <li><strong>客户管理：</strong>客户分级、跟进记录、消费排行榜一目了然。</li>
-          </ul>
-        </div>
-
+      <div class="feat-card">
+        <div class="feat-icon g">🌐</div>
+        <div class="feat-title">赋能生意的"营销与链接"</div>
+        <p class="feat-desc">拓宽销售渠道，打破地域限制，让生意连接更多可能。</p>
+        <ul class="feat-points">
+          <li><strong>线上云店：</strong>软件配套小程序商城，熟客可在线自助下单，帮你拓宽销售渠道。</li>
+          <li><strong>远程协同：</strong>支持异地仓库远程打印发货单，海外/外地客户下单，国内仓库同步备货，打破地域限制。</li>
+          <li><strong>客户管理：</strong>客户分级、跟进记录、消费排行榜一目了然。</li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ══════ 模块三：产品优势 & 价格 ══════ -->
-  <section class="section adv-section" id="advantage">
-    <div class="section-inner">
-      <div class="section-label">Why Miaozhang</div>
-      <h2 class="section-title">为什么选择秒账？</h2>
-      <p class="section-subtitle">四年深耕，用产品和服务赢得每一位客户的信任。</p>
+<!-- ══════ 产品优势 & 价格 ══════ -->
+<section class="section section-alt" id="advantage">
+  <div class="section-inner">
+    <div class="section-label">Why Miaozhang</div>
+    <h2 class="section-title">为什么选择秒账？</h2>
+    <p class="section-subtitle">四年深耕，用产品和服务赢得每一位客户的信任。</p>
 
-      <div class="adv-grid">
-        <div class="adv-card">
-          <div class="adv-num">01</div>
+    <div class="adv-grid">
+      <div class="adv-card">
+        <div class="adv-num">01</div>
+        <div>
+          <div class="adv-title">极致性价比</div>
+          <div class="adv-desc">年费仅 799 元起，不限端口、不限用户数，全员使用无额外费用，远低于雇佣一个会计的月薪。</div>
+        </div>
+      </div>
+      <div class="adv-card">
+        <div class="adv-num">02</div>
+        <div>
+          <div class="adv-title">行业定制</div>
+          <div class="adv-desc">深耕行业多年，系统内置近 40 个行业的专属模板（如五金、冻品、纺织、电子元器件），功能贴地气，买来就能用。</div>
+        </div>
+      </div>
+      <div class="adv-card">
+        <div class="adv-num">03</div>
+        <div>
+          <div class="adv-title">手把手服务</div>
+          <div class="adv-desc">不仅卖软件，更提供专属 1 对 1 客服。从初始化建账到日常使用，遇到问题随时远程协助，甚至业务员可上门指导。</div>
+        </div>
+      </div>
+      <div class="adv-card">
+        <div class="adv-num">04</div>
+        <div>
+          <div class="adv-title">安全稳定</div>
+          <div class="adv-desc">腾讯云加密存储，数据自动备份，银行级安全防护，不用担心电脑中毒导致数据丢失。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-wrap">
+      <div class="price-card">
+        <div class="price-amount"><sub>¥</sub>799<sub>/年</sub></div>
+        <div class="price-unit">不限端口 · 不限用户数 · 全员使用无额外费用</div>
+        <div class="price-tags">
+          <span class="price-tag">全功能开放</span>
+          <span class="price-tag">1对1专属客服</span>
+          <span class="price-tag">腾讯云安全存储</span>
+          <span class="price-tag">自动更新升级</span>
+          <span class="price-tag">近40个行业模板</span>
+          <span class="price-tag">配套小程序商城</span>
+        </div>
+        <a href="#contact" class="btn btn-primary">立即开通</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 打印机产品 ══════ -->
+<section class="section printer-section" id="printer">
+  <div class="section-inner">
+    <div class="section-label">Hardware</div>
+    <h2 class="section-title">配套硬件 — 智能蓝牙打印机</h2>
+    <p class="section-subtitle">专为秒账优化的无线打印方案，开单即打，效率翻倍。</p>
+
+    <div class="printer-grid">
+      <div class="printer-image-wrap">
+        <img src="printer.jpg" alt="秒账智能蓝牙打印机">
+      </div>
+      <div class="printer-info">
+        <div class="printer-name">秒账智能蓝牙打印机</div>
+        <div class="printer-model">型号：MZ-P80 · 热敏打印 · 无线连接</div>
+        <p class="printer-desc">
+          专为进销存场景打造的高速热敏打印机。支持蓝牙无线连接，手机开单后一键打印小票或发货单，无需繁琐布线。适配秒账App全部打印模板，开单即打，让您的收银台和仓库管理更加高效流畅。
+        </p>
+        <div class="printer-specs">
+          <div class="printer-spec">
+            <div class="printer-spec-icon s1">📡</div>
+            <span>蓝牙 5.0 + USB 双模</span>
+          </div>
+          <div class="printer-spec">
+            <div class="printer-spec-icon s2">⚡</div>
+            <span>打印速度 120mm/s</span>
+          </div>
+          <div class="printer-spec">
+            <div class="printer-spec-icon s3">📄</div>
+            <span>支持 58/80mm 纸宽</span>
+          </div>
+          <div class="printer-spec">
+            <div class="printer-spec-icon s4">🔋</div>
+            <span>内置锂电池 2000mAh</span>
+          </div>
+        </div>
+        <div class="printer-price-row">
+          <div class="printer-price"><sub>¥</sub>299<sub>/台</sub></div>
+          <div class="printer-price-original">¥399</div>
+        </div>
+        <button class="btn btn-pink" onclick="openOrderModal()" style="font-size:15px;padding:14px 36px;">
+          🛒 立即下单
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 适用场景 ══════ -->
+<section class="section" id="scenes">
+  <div class="section-inner">
+    <div class="section-label">Use Cases</div>
+    <h2 class="section-title">无论哪种生意，秒账都能胜任</h2>
+    <div class="scenes-grid">
+      <div class="scene-card">
+        <div class="scene-icon">🏬</div>
+        <div class="scene-name">批发商</div>
+        <div class="scene-desc">海量 SKU 管理，快速开单，轻松搞定复杂价格体系。</div>
+      </div>
+      <div class="scene-card">
+        <div class="scene-icon">🏭</div>
+        <div class="scene-name">生产厂家</div>
+        <div class="scene-desc">原材料、半成品、成品一体化管理，成本核算更精准。</div>
+      </div>
+      <div class="scene-card">
+        <div class="scene-icon">🏪</div>
+        <div class="scene-name">连锁 / 多门店</div>
+        <div class="scene-desc">总部统一管控，分店独立运营，数据互联互通。</div>
+      </div>
+      <div class="scene-card">
+        <div class="scene-icon">🏠</div>
+        <div class="scene-name">夫妻店 / 个体户</div>
+        <div class="scene-desc">无需财务知识，上手即用，省时省力。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 用户证言 ══════ -->
+<section class="section section-alt" id="testimonials">
+  <div class="section-inner">
+    <div class="section-label">Testimonials</div>
+    <h2 class="section-title">来自真实用户的声音</h2>
+    <p class="section-subtitle">超过千万商户正在使用秒账改变他们的生意方式。</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">我在义乌做外贸，在印度接单，秒账能让印度客户刚下完单，义乌的店员就能立刻备货，这很神奇！</p>
+        <div class="testimonial-author">小陈</div>
+        <div class="testimonial-role">外贸商户</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">我们产品多型号杂，秒账的库存预警能设置上下限，进货时预警，超卖时提醒补货。而且线上云店也好用，直接让熟客在线下单。</p>
+        <div class="testimonial-author">戒掉借口找心欢</div>
+        <div class="testimonial-role">玩具批发商</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">用了秒账之后，至少帮我省去三分之二整理账目的时间。销售流水、客户消费排行榜一目了然。</p>
+        <div class="testimonial-author">帅气小丁丁</div>
+        <div class="testimonial-role">零售店主</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 联系区域 ══════ -->
+<section class="section contact-section" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">联系我们</h2>
+    <p class="section-subtitle">立即体验秒账，开启智能进销存管理新时代。</p>
+    <div class="contact-grid">
+      <div class="contact-items">
+        <div class="ci">
+          <div class="ci-icon c">📧</div>
           <div>
-            <div class="adv-title">极致性价比</div>
-            <div class="adv-desc">年费仅 799 元起，不限端口、不限用户数，全员使用无额外费用，远低于雇佣一个会计的月薪。</div>
+            <div class="ci-label">电子邮箱</div>
+            <div class="ci-value">563595150@qq.com</div>
           </div>
         </div>
-        <div class="adv-card">
-          <div class="adv-num">02</div>
+        <div class="ci">
+          <div class="ci-icon b">📱</div>
           <div>
-            <div class="adv-title">行业定制</div>
-            <div class="adv-desc">深耕行业多年，系统内置近 40 个行业的专属模板（如五金、冻品、纺织、电子元器件），功能贴地气，买来就能用。</div>
+            <div class="ci-label">联系电话</div>
+            <div class="ci-value">137-9445-9208</div>
           </div>
         </div>
-        <div class="adv-card">
-          <div class="adv-num">03</div>
+        <div class="ci">
+          <div class="ci-icon p">💬</div>
           <div>
-            <div class="adv-title">手把手服务</div>
-            <div class="adv-desc">不仅卖软件，更提供专属 1 对 1 客服。从初始化建账到日常使用，遇到问题随时远程协助，甚至业务员可上门指导。</div>
+            <div class="ci-label">微信</div>
+            <div class="ci-value">pengqinHJ</div>
           </div>
         </div>
-        <div class="adv-card">
-          <div class="adv-num">04</div>
+        <div class="ci">
+          <div class="ci-icon c">📍</div>
           <div>
-            <div class="adv-title">安全稳定</div>
-            <div class="adv-desc">腾讯云加密存储，数据自动备份，银行级安全防护，不用担心电脑中毒导致数据丢失。</div>
+            <div class="ci-label">地址</div>
+            <div class="ci-value">中国 · 深圳</div>
           </div>
         </div>
       </div>
 
-      <!-- 定价 -->
-      <div class="price-wrap">
-        <div class="price-card">
-          <div class="price-amount"><sub>¥</sub>799<sub>/年</sub></div>
-          <div class="price-unit">不限端口 · 不限用户数 · 全员使用无额外费用</div>
-          <div class="price-tags">
-            <span class="price-tag">全功能开放</span>
-            <span class="price-tag">1对1专属客服</span>
-            <span class="price-tag">腾讯云安全存储</span>
-            <span class="price-tag">自动更新升级</span>
-            <span class="price-tag">近40个行业模板</span>
-            <span class="price-tag">配套小程序商城</span>
+      <div class="contact-divider"></div>
+
+      <div class="contact-side">
+        <div class="qr-wrap">
+          <div class="qr-outer"></div>
+          <div class="qr-inner">
+            <img src="wechat-qr.jpg" alt="微信二维码">
           </div>
-          <a href="#contact" class="btn btn-primary">立即开通</a>
+        </div>
+        <span class="qr-cap">扫码添加一对一客服微信</span>
+        <div class="photo-mini">
+          <img src="photo.jpg" alt="证件照">
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ══════ 适用场景 ══════ -->
-  <section class="section" id="scenes">
-    <div class="section-inner">
-      <div class="section-label">Use Cases</div>
-      <h2 class="section-title">无论哪种生意，秒账都能胜任</h2>
-      <div class="scenes-grid">
-        <div class="scene-card">
-          <div class="scene-icon">&#x1F3EC;</div>
-          <div class="scene-name">批发商</div>
-          <div class="scene-desc">海量 SKU 管理，快速开单，轻松搞定复杂价格体系。</div>
-        </div>
-        <div class="scene-card">
-          <div class="scene-icon">&#x1F3ED;</div>
-          <div class="scene-name">生产厂家</div>
-          <div class="scene-desc">原材料、半成品、成品一体化管理，成本核算更精准。</div>
-        </div>
-        <div class="scene-card">
-          <div class="scene-icon">&#x1F3EA;</div>
-          <div class="scene-name">连锁 / 多门店</div>
-          <div class="scene-desc">总部统一管控，分店独立运营，数据互联互通。</div>
-        </div>
-        <div class="scene-card">
-          <div class="scene-icon">&#x1F3E0;</div>
-          <div class="scene-name">夫妻店 / 个体户</div>
-          <div class="scene-desc">无需财务知识，上手即用，省时省力。</div>
-        </div>
-      </div>
+    <div class="cta-banner">
+      <div class="cta-banner-title">准备好让生意管理更高效了吗？</div>
+      <div class="cta-banner-desc">加入千万商户的行列，用秒账让经营效率翻倍。</div>
+      <a href="#" class="btn-light">▶ 立即免费体验</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ══════ 模块四：用户证言 ══════ -->
-  <section class="section adv-section" id="testimonials">
-    <div class="section-inner">
-      <div class="section-label">Testimonials</div>
-      <h2 class="section-title">来自真实用户的声音</h2>
-      <p class="section-subtitle">超过千万商户正在使用秒账改变他们的生意方式。</p>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <p class="testimonial-text">我在义乌做外贸，在印度接单，秒账能让印度客户刚下完单，义乌的店员就能立刻备货，这很神奇！</p>
-          <div class="testimonial-author">小陈</div>
-          <div class="testimonial-role">外贸商户</div>
-        </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">我们产品多型号杂，秒账的库存预警能设置上下限，进货时预警，超卖时提醒补货。而且线上云店也好用，直接让熟客在线下单。</p>
-          <div class="testimonial-author">戒掉借口找心欢</div>
-          <div class="testimonial-role">玩具批发商</div>
-        </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">用了秒账之后，至少帮我省去三分之二整理账目的时间。销售流水、客户消费排行榜一目了然。</p>
-          <div class="testimonial-author">帅气小丁丁</div>
-          <div class="testimonial-role">零售店主</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ══════ Footer ══════ -->
+<footer class="footer">
+  <div class="footer-brand">秒账科技</div>
+  <div class="footer-info">&copy; 2026 秒账 · 专为生意人打造的智能进销存管家</div>
+</footer>
 
-  <!-- ══════ 联系区域 ══════ -->
-  <section class="section contact-section" id="contact">
-    <div class="section-inner">
-      <div class="section-label">Contact</div>
-      <h2 class="section-title">联系我们</h2>
-      <p class="section-subtitle">立即体验秒账，开启智能进销存管理新时代。</p>
-      <div class="contact-grid">
-        <div class="contact-items">
-          <div class="ci">
-            <div class="ci-icon c">&#x1F4E7;</div>
-            <div>
-              <div class="ci-label">电子邮箱</div>
-              <div class="ci-value">563595150@qq.com</div>
-            </div>
-          </div>
-          <div class="ci">
-            <div class="ci-icon b">&#x1F4F1;</div>
-            <div>
-              <div class="ci-label">联系电话</div>
-              <div class="ci-value">137-9445-9208</div>
-            </div>
-          </div>
-          <div class="ci">
-            <div class="ci-icon p">&#x1F4AC;</div>
-            <div>
-              <div class="ci-label">微信</div>
-              <div class="ci-value">pengqinHJ</div>
-            </div>
-          </div>
-          <div class="ci">
-            <div class="ci-icon c">&#x1F4CD;</div>
-            <div>
-              <div class="ci-label">地址</div>
-              <div class="ci-value">中国 · 深圳</div>
-            </div>
-          </div>
-        </div>
+<!-- ══════ 下单弹窗 ══════ -->
+<div id="orderModal" class="modal-overlay" style="display:none;">
+  <div class="modal" id="modalContent"></div>
+</div>
 
-        <div class="contact-divider"></div>
+<script>
+// 生成订单号
+function generateOrderId() {
+  var now = new Date();
+  var ts = now.getFullYear().toString() +
+    ('0' + (now.getMonth() + 1)).slice(-2) +
+    ('0' + now.getDate()).slice(-2) +
+    ('0' + now.getHours()).slice(-2) +
+    ('0' + now.getMinutes()).slice(-2) +
+    ('0' + now.getSeconds()).slice(-2);
+  var rand = Math.floor(Math.random() * 9000 + 1000);
+  return 'MZ' + ts + rand;
+}
 
-        <div class="contact-side">
-          <div class="qr-wrap">
-            <div class="qr-outer"></div>
-            <div class="qr-inner">
-              <img src="wechat-qr.jpg" alt="微信二维码">
-            </div>
-          </div>
-          <span class="qr-cap">扫码添加微信</span>
-          <div class="photo-mini">
-            <img src="photo.jpg" alt="证件照">
-          </div>
-        </div>
-      </div>
+// 打开下单表单
+function openOrderModal() {
+  var modal = document.getElementById('orderModal');
+  var content = document.getElementById('modalContent');
+  content.innerHTML = '' +
+    '<button class="modal-close" onclick="closeOrderModal()">✕</button>' +
+    '<div class="modal-title">下单 — 秒账智能蓝牙打印机</div>' +
+    '<div class="modal-subtitle">型号 MZ-P80 · 单价 ¥299/台</div>' +
+    '<div class="form-group">' +
+    '  <label class="form-label">联系人</label>' +
+    '  <input class="form-input" id="orderName" placeholder="请输入您的姓名">' +
+    '</div>' +
+    '<div class="form-group">' +
+    '  <label class="form-label">联系电话</label>' +
+    '  <input class="form-input" id="orderPhone" placeholder="请输入手机号码">' +
+    '</div>' +
+    '<div class="form-group">' +
+    '  <label class="form-label">数量</label>' +
+    '  <select class="form-select" id="orderQty">' +
+    '    <option value="1">1 台</option>' +
+    '    <option value="2">2 台</option>' +
+    '    <option value="3">3 台</option>' +
+    '    <option value="5">5 台</option>' +
+    '    <option value="10">10 台</option>' +
+    '  </select>' +
+    '</div>' +
+    '<div class="form-group">' +
+    '  <label class="form-label">备注</label>' +
+    '  <input class="form-input" id="orderNote" placeholder="选填：备注信息">' +
+    '</div>' +
+    '<div class="modal-actions">' +
+    '  <button class="btn btn-secondary" onclick="closeOrderModal()">取消</button>' +
+    '  <button class="btn btn-primary" onclick="submitOrder()">确认下单</button>' +
+    '</div>';
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
 
-      <!-- CTA Banner -->
-      <div class="cta-banner">
-        <div class="cta-banner-title">准备好让生意管理更高效了吗？</div>
-        <div class="cta-banner-desc">加入千万商户的行列，用秒账让经营效率翻倍。</div>
-        <a href="#" class="btn-light">&#9654; 立即免费体验</a>
-      </div>
-    </div>
-  </section>
+// 关闭弹窗
+function closeOrderModal() {
+  document.getElementById('orderModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
 
-  <!-- ══════ Footer ══════ -->
-  <footer class="footer">
-    <div class="footer-brand">秒账科技</div>
-    <div class="footer-info">&copy; 2026 秒账 · 专为生意人打造的智能进销存管家</div>
-  </footer>
+// 提交订单
+function submitOrder() {
+  var name = document.getElementById('orderName').value.trim();
+  var phone = document.getElementById('orderPhone').value.trim();
+  var qty = parseInt(document.getElementById('orderQty').value);
+  var note = document.getElementById('orderNote').value.trim();
 
-</main>
+  if (!name) { alert('请输入联系人姓名'); return; }
+  if (!phone) { alert('请输入联系电话'); return; }
+  if (!/^1[3-9]\d{9}$/.test(phone)) { alert('请输入正确的手机号码'); return; }
+
+  var orderId = generateOrderId();
+  var unitPrice = 299;
+  var total = unitPrice * qty;
+  var now = new Date();
+  var dateStr = now.getFullYear() + '-' +
+    ('0' + (now.getMonth() + 1)).slice(-2) + '-' +
+    ('0' + now.getDate()).slice(-2) + ' ' +
+    ('0' + now.getHours()).slice(-2) + ':' +
+    ('0' + now.getMinutes()).slice(-2);
+
+  var content = document.getElementById('modalContent');
+  content.innerHTML = '' +
+    '<button class="modal-close" onclick="closeOrderModal()">✕</button>' +
+    '<div class="order-result">' +
+    '  <div class="order-result-header">✅ 订单已生成</div>' +
+    '  <div class="order-info-card">' +
+    '    <div class="order-info-row"><span class="lbl">订单编号</span><span class="val" style="font-family:monospace;font-size:13px;">' + orderId + '</span></div>' +
+    '    <div class="order-info-row"><span class="lbl">商品</span><span class="val">秒账智能蓝牙打印机 MZ-P80</span></div>' +
+    '    <div class="order-info-row"><span class="lbl">数量</span><span class="val">' + qty + ' 台</span></div>' +
+    '    <div class="order-info-row"><span class="lbl">单价</span><span class="val">¥299.00</span></div>' +
+    '    <div class="order-info-row"><span class="lbl">合计</span><span class="val" style="color:var(--accent-pink);font-size:18px;">¥' + total.toFixed(2) + '</span></div>' +
+    '    <div class="order-info-row"><span class="lbl">联系人</span><span class="val">' + escHtml(name) + '</span></div>' +
+    '    <div class="order-info-row"><span class="lbl">电话</span><span class="val">' + escHtml(phone) + '</span></div>' +
+    (note ? '    <div class="order-info-row"><span class="lbl">备注</span><span class="val">' + escHtml(note) + '</span></div>' : '') +
+    '    <div class="order-info-row"><span class="lbl">下单时间</span><span class="val">' + dateStr + '</span></div>' +
+    '  </div>' +
+    '  <div class="order-qr-amount">应付金额：¥' + total.toFixed(2) + '</div>' +
+    '  <div class="order-qr-wrap">' +
+    '    <img src="wechat-qr.jpg" alt="付款二维码">' +
+    '  </div>' +
+    '  <div class="order-qr-hint">📱 请使用微信扫描二维码完成支付</div>' +
+    '  <div class="order-id">订单号：' + orderId + '</div>' +
+    '  <div style="margin-top:20px;">' +
+    '    <button class="btn btn-secondary" onclick="closeOrderModal()">关闭</button>' +
+    '  </div>' +
+    '</div>';
+}
+
+function escHtml(s) {
+  var d = document.createElement('div');
+  d.appendChild(document.createTextNode(s));
+  return d.innerHTML;
+}
+
+// 点击遮罩关闭
+document.getElementById('orderModal').addEventListener('click', function(e) {
+  if (e.target === this) closeOrderModal();
+});
+
+// ESC 关闭
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeOrderModal();
+});
+</script>
 
 </body>
 </html>
